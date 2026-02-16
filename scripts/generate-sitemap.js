@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 
 // Configuration
 const config = {
-  hostname: 'https://passportphotomaker.com',
+  hostname: process.env.SITE_URL || 'https://nishitha-studio.vercel.app',
   outDir: path.join(__dirname, '../build'),
   routes: [
     {
