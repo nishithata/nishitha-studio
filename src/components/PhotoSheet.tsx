@@ -10,6 +10,7 @@ import { Badge } from './ui/badge';
 import { PAPER_SIZE_OPTIONS, LAYOUTS, PHOTO_SIZE_OPTIONS, PhotoSize } from '../utils/layoutConfig';
 import { createPhotoSheet, downloadPhotoSheet } from '../utils/canvasRenderer';
 import { getIntelligentPaperSizes, getOptimalLayout } from '../utils/paperSizeCalculator';
+import Analytics from '../utils/analytics';
 
 interface PhotoSheetProps {
   uploadedImage: string | null;
@@ -214,9 +215,13 @@ export function PhotoSheet({
         });
 
         downloadPhotoSheet(result.canvas, paperSize, result.dpi);
+
+        // Track successful export
+        Analytics.photoExported('png', paperSize, quality === 'high' ? 300 : 150);
       } catch (error) {
         console.error('Error downloading sheet:', error);
         alert('Failed to download photo sheet. Please try again.');
+        Analytics.errorOccurred('export_error', error instanceof Error ? error.message : 'Unknown error');
       }
     };
     img.src = uploadedImage;

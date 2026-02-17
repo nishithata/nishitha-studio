@@ -12,6 +12,7 @@ import { Switch } from './ui/switch';
 import { PhotoSession } from '../utils/history';
 import { PhotoPreset } from '../utils/presets';
 import { PHOTO_SIZE_OPTIONS } from '../utils/layoutConfig';
+import Analytics from '../utils/analytics';
 
 // Lazy load heavy components for better performance
 const QRCodeGenerator = lazy(() => import('./QRCodeGenerator').then(m => ({ default: m.QRCodeGenerator })));
@@ -265,16 +266,21 @@ export function EnhancedPhotoEditor({
         setUploadedImage(event.target?.result as string);
         setOriginalImage(event.target?.result as string);
         setIsUploading(false);
+
+        // Track photo upload
+        Analytics.photoUploaded(file.size, file.type || 'unknown');
       };
       reader.onerror = () => {
         setIsUploading(false);
         alert('Failed to read image file. Please try again.');
+        Analytics.errorOccurred('upload_error', 'Failed to read image file');
       };
       reader.readAsDataURL(processedFile);
     } catch (error) {
       console.error('Failed to process image:', error);
       alert('Failed to process image. Please try a different file.');
       setIsUploading(false);
+      Analytics.errorOccurred('image_processing_error', error instanceof Error ? error.message : 'Unknown error');
     }
   };
 

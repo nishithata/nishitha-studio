@@ -13,6 +13,7 @@ import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { ThemeProvider, useTheme, themes } from './contexts/ThemeContext';
 import { Camera, Stars, Settings, HelpCircle, Coffee, Linkedin } from 'lucide-react';
 import { Button } from './components/ui/button';
+import Analytics from './utils/analytics';
 
 function AppContent() {
   const { t } = useLanguage();
@@ -40,11 +41,13 @@ function AppContent() {
 
   const handleNext = () => {
     if (uploadedImage) {
+      Analytics.stepChanged(1, 2);
       setCurrentStep(2);
     }
   };
 
   const handleBack = () => {
+    Analytics.stepChanged(2, 1);
     setCurrentStep(1);
   };
 
@@ -149,7 +152,10 @@ function AppContent() {
               {/* Help Button - reduced animation */}
               <div>
                 <Button
-                  onClick={() => setShowHelp(true)}
+                  onClick={() => {
+                    Analytics.helpViewed();
+                    setShowHelp(true);
+                  }}
                   className="w-10 h-10 sm:w-auto sm:h-auto sm:px-4 sm:py-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl transition-colors"
                   aria-label="Open help"
                 >
@@ -161,7 +167,10 @@ function AppContent() {
               {/* Settings Button - reduced animation */}
               <div>
                 <Button
-                  onClick={() => setShowSettings(true)}
+                  onClick={() => {
+                    Analytics.featureUsed('settings_opened');
+                    setShowSettings(true);
+                  }}
                   className="w-10 h-10 sm:w-auto sm:h-auto sm:px-4 sm:py-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl transition-colors"
                   aria-label="Open settings"
                 >
@@ -182,6 +191,7 @@ function AppContent() {
                 href="https://buymeacoffee.com/NishithaAnil"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => Analytics.supportClicked('header_button')}
                 className="hidden lg:flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-gray-900 rounded-2xl transition-all duration-200 shadow-2xl hover:shadow-amber-500/50"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -311,6 +321,7 @@ function AppContent() {
                 className="text-white/70 hover:text-white transition-colors duration-200 inline-flex items-center gap-1"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => Analytics.supportClicked('footer_link')}
               >
                 <Coffee className="w-3.5 h-3.5" />
                 Support
