@@ -59,7 +59,9 @@ class GlobalErrorHandler {
     });
 
     // Log initialization
-    console.log('🛡️ Global Error Handler initialized');
+    if (import.meta.env.DEV) {
+      console.log('🛡️ Global Error Handler initialized');
+    }
   }
 
   private handleError(errorReport: ErrorReport) {

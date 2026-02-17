@@ -27,7 +27,9 @@ export const trackEvent = (
 ): void => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, params);
-    console.log('GA Event:', eventName, params);
+    if (import.meta.env.DEV) {
+      console.log('GA Event:', eventName, params);
+    }
   }
 };
 
@@ -40,7 +42,9 @@ export const trackPageView = (path: string, title?: string): void => {
       page_path: path,
       page_title: title || document.title,
     });
-    console.log('GA Page View:', path, title);
+    if (import.meta.env.DEV) {
+      console.log('GA Page View:', path, title);
+    }
   }
 };
 
@@ -50,7 +54,9 @@ export const trackPageView = (path: string, title?: string): void => {
 export const trackClarityTag = (tag: string, value?: string): void => {
   if (typeof window !== 'undefined' && window.clarity) {
     window.clarity('set', tag, value || 'true');
-    console.log('Clarity Tag:', tag, value);
+    if (import.meta.env.DEV) {
+      console.log('Clarity Tag:', tag, value);
+    }
   }
 };
 

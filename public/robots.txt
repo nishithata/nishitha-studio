@@ -1,11 +1,15 @@
 # Passport Photo Maker - Robots.txt
+# https://nishitha-studio.vercel.app
 # Allow all search engines to crawl the site
 
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: /sitemap.xml
+# Disallow development and temporary files
+Disallow: /dev-tools/
+
+# Sitemap location (full URL required for best practices)
+Sitemap: https://nishitha-studio.vercel.app/sitemap.xml
 
 # Crawl-delay for polite crawling
 Crawl-delay: 1

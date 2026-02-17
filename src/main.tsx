@@ -1,6 +1,7 @@
 
 import { createRoot } from "react-dom/client";
 import { inject } from '@vercel/analytics';
+import { initWebVitals } from "./utils/webVitals";
 import App from "./App.tsx";
 import ErrorBoundary from "./components/ErrorBoundary.tsx";
 import "./utils/errorHandler"; // Initialize global error handler
@@ -27,7 +28,9 @@ if (import.meta.env.PROD && import.meta.env.VITE_GA_MEASUREMENT_ID) {
       });
     `;
     document.head.appendChild(inlineScript);
-    console.log('Google Analytics initialized');
+    if (import.meta.env.DEV) {
+      console.log('Google Analytics initialized');
+    }
   } catch (err) {
     console.error('Failed to initialize Google Analytics:', err);
   }
@@ -47,7 +50,9 @@ if (import.meta.env.PROD && import.meta.env.VITE_CLARITY_ID) {
       })(window, document, "clarity", "script", "${import.meta.env.VITE_CLARITY_ID}");
     `;
     document.head.appendChild(script);
-    console.log('Microsoft Clarity initialized');
+    if (import.meta.env.DEV) {
+      console.log('Microsoft Clarity initialized');
+    }
   } catch (err) {
     console.error('Failed to initialize Clarity:', err);
   }
@@ -57,9 +62,20 @@ if (import.meta.env.PROD && import.meta.env.VITE_CLARITY_ID) {
 if (import.meta.env.PROD) {
   try {
     inject();
-    console.log('Vercel Analytics initialized');
+    if (import.meta.env.DEV) {
+      console.log('Vercel Analytics initialized');
+    }
   } catch (err) {
     console.error('Failed to initialize Vercel Analytics:', err);
+  }
+}
+
+// Initialize Web Vitals performance monitoring
+if (import.meta.env.PROD) {
+  try {
+    initWebVitals();
+  } catch (err) {
+    console.error('Failed to initialize Web Vitals:', err);
   }
 }
 

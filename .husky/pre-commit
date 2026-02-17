@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run lint-staged (auto-fix linting and formatting)
+npx lint-staged
+
+# Run tests (commented out by default - uncomment if you want tests on every commit)
+# npm run test:run

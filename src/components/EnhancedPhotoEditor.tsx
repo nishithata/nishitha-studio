@@ -168,24 +168,34 @@ export function EnhancedPhotoEditor({
     setIsDragging(false);
   };
 
-  // Mouse wheel zoom handler
-  const handleWheel = (e: React.WheelEvent) => {
-    if (!uploadedImage) return;
+  // Mouse wheel zoom handler - using native event to prevent passive listener warning
+  useEffect(() => {
+    const canvasElement = canvasRef.current;
+    if (!canvasElement || !uploadedImage) return;
 
-    // Prevent page scroll when zooming
-    e.preventDefault();
-    e.stopPropagation();
+    const handleWheel = (e: WheelEvent) => {
+      // Prevent page scroll when zooming
+      e.preventDefault();
+      e.stopPropagation();
 
-    // Determine zoom direction and amount
-    // deltaY < 0 means scroll up (zoom in), > 0 means scroll down (zoom out)
-    const zoomDelta = e.deltaY > 0 ? -5 : 5; // 5% per scroll for step-based control
+      // Determine zoom direction and amount
+      // deltaY < 0 means scroll up (zoom in), > 0 means scroll down (zoom out)
+      const zoomDelta = e.deltaY > 0 ? -5 : 5; // 5% per scroll for step-based control
 
-    // Apply zoom with bounds checking
-    setZoom((prevZoom) => {
-      const newZoom = prevZoom + zoomDelta;
-      return Math.max(50, Math.min(200, newZoom));
-    });
-  };
+      // Apply zoom with bounds checking
+      setZoom((prevZoom) => {
+        const newZoom = prevZoom + zoomDelta;
+        return Math.max(50, Math.min(200, newZoom));
+      });
+    };
+
+    // Add event listener with passive: false to allow preventDefault
+    canvasElement.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      canvasElement.removeEventListener('wheel', handleWheel);
+    };
+  }, [uploadedImage]);
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -1281,7 +1291,6 @@ export function EnhancedPhotoEditor({
                     onMouseMove={handleMouseMove}
                     onMouseUp={handleMouseUp}
                     onMouseLeave={handleMouseUp}
-                    onWheel={handleWheel}
                   >
                     {/* Photo */}
                     <div className="absolute inset-0 overflow-hidden">
