@@ -14,9 +14,18 @@ export function SupportBanner() {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 100, opacity: 0 }}
         transition={{ type: 'spring', stiffness: 100 }}
-        className="fixed bottom-6 right-6 z-50 max-w-sm"
+        className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[9999] max-w-[calc(100vw-8rem)] sm:max-w-sm"
+        style={{
+          position: 'fixed',
+          transform: 'translate3d(0, 0, 0)',
+          WebkitTransform: 'translate3d(0, 0, 0)',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          willChange: 'transform, opacity',
+          zIndex: 9999
+        }}
       >
-        <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 rounded-2xl shadow-2xl p-6 text-white relative overflow-hidden">
+        <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 text-white relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full -translate-y-1/2 translate-x-1/2" />

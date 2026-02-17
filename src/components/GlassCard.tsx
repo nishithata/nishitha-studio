@@ -15,6 +15,14 @@ export function GlassCard({ children, className = '', delay = 0 }: GlassCardProp
       transition={{ delay, duration: 0.4 }}
       whileHover={{ y: -2 }}
       className={`backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl hover:shadow-indigo-500/20 transition-all duration-300 ${className}`}
+      style={{
+        transform: 'translate3d(0, 0, 0)',
+        WebkitTransform: 'translate3d(0, 0, 0)',
+        willChange: 'auto',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+        isolation: 'isolate'
+      }}
     >
       {children}
     </motion.div>

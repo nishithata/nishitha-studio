@@ -2,6 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance optimizations to prevent flickering */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Prevent scroll-triggered repaints */
+    overflow-x: hidden;
+    /* Suppress passive event listener warnings */
+    touch-action: pan-y;
+  }
+
+  body {
+    /* Prevent flickering during scroll */
+    overscroll-behavior: none;
+    /* Force GPU acceleration on body */
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    /* Suppress passive event listener warnings */
+    touch-action: pan-y;
+  }
+
+  /* Aggressive scroll performance - disable blur during scroll */
+  * {
+    /* Prevent touch/wheel passive listener issues */
+    touch-action: manipulation;
+  }
+
+  /* Optimize GPU compositing for fixed/absolute positioned elements */
+  .fixed, [class*="fixed"] {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    /* Force layer creation */
+    will-change: contents;
+  }
+
+  /* Chrome-specific backdrop-blur fix - MORE AGGRESSIVE */
+  @supports (-webkit-backdrop-filter: blur(1px)) {
+    .backdrop-blur-xl,
+    .backdrop-blur-sm,
+    [class*="backdrop-blur"] {
+      /* Force GPU acceleration and prevent repaints in Chrome */
+      transform: translate3d(0, 0, 0);
+      will-change: contents;
+      -webkit-transform: translate3d(0, 0, 0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      /* Create isolated stacking context */
+      isolation: isolate;
+      /* Reduce repaint frequency */
+      contain: layout style paint;
+    }
+  }
+
+  /* Optimize sticky elements during scroll */
+  .sticky, [class*="sticky"] {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    will-change: contents;
+    /* Reduce blur during scroll for performance */
+    transition: backdrop-filter 0s;
+  }
+
+  /* Prevent background repaints */
+  [class*="bg-gradient"] {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    will-change: contents;
+  }
+
+  /* Optimize blur elements - lighter blur for better performance */
+  .blur-3xl {
+    filter: blur(48px);
+  }
+
+  .blur-2xl {
+    filter: blur(24px);
+  }
+
+  /* Canvas performance optimizations */
+  canvas {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: auto;
+    /* Isolate canvas from parent backdrop-blur */
+    contain: layout style paint;
+    isolation: isolate;
+  }
+}
+
 /*! tailwindcss v4.1.3 | MIT License | https://tailwindcss.com */
 @layer properties {
   @supports (((-webkit-hyphens: none)) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {

@@ -49,7 +49,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative">
       {/* Skip to main content link for keyboard users */}
       <a
         href="#main-content"
@@ -59,50 +59,38 @@ function AppContent() {
       </a>
 
       {/* Animated Background with Theme */}
-      <div className={`fixed inset-0 bg-gradient-to-br ${currentTheme.gradient}`}>
-        {/* Animated gradient orbs */}
-        <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -100, 0],
-            scale: [1, 1.2, 1],
+      <div className={`fixed inset-0 bg-gradient-to-br ${currentTheme.gradient}`}
+        style={{
+          transform: 'translate3d(0, 0, 0)',
+          WebkitTransform: 'translate3d(0, 0, 0)',
+          willChange: 'auto'
+        }}
+      >
+        {/* Static gradient orbs - optimized blur */}
+        <div
+          className={`absolute top-0 -left-40 w-96 h-96 ${currentTheme.orb1} rounded-full blur-2xl opacity-30`}
+          style={{
+            transform: 'translate3d(0, 0, 0)',
+            WebkitTransform: 'translate3d(0, 0, 0)'
           }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className={`absolute top-0 -left-40 w-96 h-96 ${currentTheme.orb1} rounded-full blur-3xl`}
         />
-        <motion.div
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 100, 0],
-            scale: [1, 1.3, 1],
+        <div
+          className={`absolute top-1/4 right-0 w-[32rem] h-[32rem] ${currentTheme.orb2} rounded-full blur-2xl opacity-30`}
+          style={{
+            transform: 'translate3d(0, 0, 0)',
+            WebkitTransform: 'translate3d(0, 0, 0)'
           }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className={`absolute top-1/4 right-0 w-[32rem] h-[32rem] ${currentTheme.orb2} rounded-full blur-3xl`}
         />
-        <motion.div
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.1, 1],
+        <div
+          className={`absolute bottom-0 left-1/3 w-96 h-96 ${currentTheme.orb3} rounded-full blur-2xl opacity-30`}
+          style={{
+            transform: 'translate3d(0, 0, 0)',
+            WebkitTransform: 'translate3d(0, 0, 0)'
           }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className={`absolute bottom-0 left-1/3 w-96 h-96 ${currentTheme.orb3} rounded-full blur-3xl`}
         />
-        
-        {/* Grid overlay */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40" />
+
+        {/* Grid overlay - commented out to prevent flickering */}
+        {/* <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40" /> */}
       </div>
 
       {/* Onboarding Tour */}
@@ -110,28 +98,34 @@ function AppContent() {
         <OnboardingTour onComplete={() => setShowOnboarding(false)} />
       )}
 
-      {/* Header with Glassmorphism */}
-      <header className="relative z-10 backdrop-blur-xl bg-white/10 border-b border-white/20 sticky top-0 shadow-2xl">
+      {/* Header - optimized for Chrome scroll performance */}
+      <header className="relative z-10 border-b border-white/20 sticky top-0 shadow-2xl"
+        style={{
+          background: 'rgba(15, 15, 35, 0.85)',
+          transform: 'translate3d(0, 0, 0)',
+          WebkitTransform: 'translate3d(0, 0, 0)',
+          willChange: 'auto',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden'
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
           <div className="flex items-center justify-between gap-4">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-3 sm:gap-4"
             >
               <div className="relative">
-                <motion.div
-                  animate={{
-                    rotate: 360,
+                {/* Removed rotating blur animation to prevent flickering */}
+                <div className={`relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${currentTheme.accent} rounded-2xl flex items-center justify-center shadow-2xl`}
+                  style={{
+                    transform: 'translate3d(0, 0, 0)',
+                    WebkitTransform: 'translate3d(0, 0, 0)',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden'
                   }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className={`absolute inset-0 bg-gradient-to-r ${currentTheme.accent} rounded-2xl blur-lg opacity-75`}
-                />
-                <div className={`relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${currentTheme.accent} rounded-2xl flex items-center justify-center shadow-2xl`}>
+                >
                   <Camera className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
               </div>
@@ -139,12 +133,9 @@ function AppContent() {
                 <h1 className="text-white flex items-center gap-2 text-lg sm:text-2xl">
                   <span className="hidden sm:inline">{t.appName}</span>
                   <span className="sm:hidden">Passport Photo</span>
-                  <motion.div
-                    animate={{ rotate: [0, 10, 0, -10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
+                  <div>
                     <Stars className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-300" />
-                  </motion.div>
+                  </div>
                 </h1>
                 <p className="text-xs sm:text-sm text-white/70 hidden sm:block">{t.appTagline}</p>
               </div>
@@ -155,37 +146,29 @@ function AppContent() {
               {/* Theme Selector */}
               <ThemeSelector />
 
-              {/* Help Button */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 }}
-              >
+              {/* Help Button - reduced animation */}
+              <div>
                 <Button
                   onClick={() => setShowHelp(true)}
-                  className="w-10 h-10 sm:w-auto sm:h-auto sm:px-4 sm:py-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl"
+                  className="w-10 h-10 sm:w-auto sm:h-auto sm:px-4 sm:py-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl transition-colors"
                   aria-label="Open help"
                 >
                   <HelpCircle className="w-5 h-5" aria-hidden="true" />
                   <span className="hidden sm:inline ml-2">{t.help}</span>
                 </Button>
-              </motion.div>
+              </div>
 
-              {/* Settings Button */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.15 }}
-              >
+              {/* Settings Button - reduced animation */}
+              <div>
                 <Button
                   onClick={() => setShowSettings(true)}
-                  className="w-10 h-10 sm:w-auto sm:h-auto sm:px-4 sm:py-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl"
+                  className="w-10 h-10 sm:w-auto sm:h-auto sm:px-4 sm:py-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl transition-colors"
                   aria-label="Open settings"
                 >
                   <Settings className="w-5 h-5" aria-hidden="true" />
                   <span className="hidden sm:inline ml-2">{t.settings}</span>
                 </Button>
-              </motion.div>
+              </div>
 
               {/* Language Selector */}
               <LanguageSelector />
@@ -298,28 +281,7 @@ function AppContent() {
         onClose={() => setShowHelp(false)}
       />
 
-      {/* Floating particles */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
+      {/* Floating particles removed to prevent flickering */}
 
       {/* Footer with Legal Links */}
       <footer className="relative z-10 mt-16 py-8 border-t border-white/10">

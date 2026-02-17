@@ -87,86 +87,102 @@ export function PhotoSheet({
   const currentLayout = LAYOUTS[paperSize];
   const currentPaperSizeOption = PAPER_SIZE_OPTIONS.find(s => s.value === paperSize) || PAPER_SIZE_OPTIONS[0];
 
-  // Render preview canvas
+  // Render preview canvas with debouncing to prevent continuous flickering
   useEffect(() => {
     if (!uploadedImage || !canvasRef.current) return;
 
-    const img = new Image();
-    img.onload = () => {
-      try {
-        const result = createPhotoSheet(img, {
-          paperSize,
-          quality,
-          gapEnabled,
-          borderEnabled,
-          // Photo dimensions
-          photoWidth,
-          photoHeight,
-          // Pass all transformations
-          zoom,
-          rotation,
-          panX,
-          panY,
-          brightness,
-          contrast,
-          backgroundColor,
-          // Border options
-          borderWidth,
-          borderColor,
-          // Pass optimal layout
-          optimalLayout,
-        });
+    // Debounce timer to reduce re-render frequency
+    const debounceDelay = 100; // 100ms delay
+    let rafId: number;
 
-        // Scale down canvas for preview - use dynamic scaling based on paper size
-        // Larger papers need more aggressive scaling to fit in the preview area
-        let previewScale = 0.5;
-        const paperSizeArea = currentLayout.width * currentLayout.height;
+    const timeoutId = setTimeout(() => {
+      rafId = requestAnimationFrame(() => {
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const result = createPhotoSheet(img, {
+              paperSize,
+              quality,
+              gapEnabled,
+              borderEnabled,
+              // Photo dimensions
+              photoWidth,
+              photoHeight,
+              // Pass all transformations
+              zoom,
+              rotation,
+              panX,
+              panY,
+              brightness,
+              contrast,
+              backgroundColor,
+              // Border options
+              borderWidth,
+              borderColor,
+              // Pass optimal layout
+              optimalLayout,
+            });
 
-        // Adjust scale based on paper size
-        if (paperSizeArea >= 80) { // 8x10 and larger
-          previewScale = 0.35;
-        } else if (paperSizeArea >= 48) { // 6x8 and larger
-          previewScale = 0.4;
-        } else if (paperSizeArea >= 35) { // 5x7 and larger
-          previewScale = 0.45;
-        }
+            // Scale down canvas for preview - use dynamic scaling based on paper size
+            // Larger papers need more aggressive scaling to fit in the preview area
+            let previewScale = 0.5;
+            const paperSizeArea = currentLayout.width * currentLayout.height;
 
-        const previewCanvas = document.createElement('canvas');
-        previewCanvas.width = result.canvasWidth * previewScale;
-        previewCanvas.height = result.canvasHeight * previewScale;
+            // Adjust scale based on paper size
+            if (paperSizeArea >= 80) { // 8x10 and larger
+              previewScale = 0.35;
+            } else if (paperSizeArea >= 48) { // 6x8 and larger
+              previewScale = 0.4;
+            } else if (paperSizeArea >= 35) { // 5x7 and larger
+              previewScale = 0.45;
+            }
 
-        const previewCtx = previewCanvas.getContext('2d');
-        if (previewCtx) {
-          previewCtx.drawImage(
-            result.canvas,
-            0,
-            0,
-            result.canvasWidth,
-            result.canvasHeight,
-            0,
-            0,
-            previewCanvas.width,
-            previewCanvas.height
-          );
-        }
+            const previewCanvas = document.createElement('canvas');
+            previewCanvas.width = result.canvasWidth * previewScale;
+            previewCanvas.height = result.canvasHeight * previewScale;
 
-        setPreviewCanvas(previewCanvas);
+            const previewCtx = previewCanvas.getContext('2d');
+            if (previewCtx) {
+              previewCtx.drawImage(
+                result.canvas,
+                0,
+                0,
+                result.canvasWidth,
+                result.canvasHeight,
+                0,
+                0,
+                previewCanvas.width,
+                previewCanvas.height
+              );
+            }
 
-        // Update canvas ref for display
-        if (canvasRef.current) {
-          const ctx = canvasRef.current.getContext('2d');
-          if (ctx) {
-            canvasRef.current.width = previewCanvas.width;
-            canvasRef.current.height = previewCanvas.height;
-            ctx.drawImage(previewCanvas, 0, 0);
+            setPreviewCanvas(previewCanvas);
+
+            // Update canvas ref for display
+            if (canvasRef.current) {
+              const ctx = canvasRef.current.getContext('2d');
+              if (ctx) {
+                canvasRef.current.width = previewCanvas.width;
+                canvasRef.current.height = previewCanvas.height;
+                ctx.drawImage(previewCanvas, 0, 0);
+              }
+            }
+          } catch (error) {
+            console.error('Error rendering preview:', error);
           }
-        }
-      } catch (error) {
-        console.error('Error rendering preview:', error);
+        };
+        img.src = uploadedImage;
+      });
+    }, debounceDelay);
+
+    // Cleanup function
+    return () => {
+      clearTimeout(timeoutId);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
       }
     };
-    img.src = uploadedImage;
-  }, [uploadedImage, paperSize, quality, gapEnabled, borderEnabled, photoWidth, photoHeight, zoom, rotation, panX, panY, brightness, contrast, backgroundColor, borderWidth, borderColor, optimalLayout]);
+  }, [uploadedImage, paperSize, quality, gapEnabled, borderEnabled, photoWidth, photoHeight, zoom, rotation, panX, panY, brightness, contrast, backgroundColor, borderWidth, borderColor, optimalLayout, currentLayout]);
 
   const handleDownloadSheet = () => {
     if (!uploadedImage) return;
@@ -411,26 +427,26 @@ export function PhotoSheet({
               Sheet Preview
             </h2>
 
-            {/* Preview Area */}
-            <div className="flex items-center justify-center bg-gradient-to-br from-white/5 to-white/10 rounded-3xl p-8 min-h-[700px] max-h-[900px] relative overflow-auto border border-white/20">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 opacity-50" />
-
-              {/* Paper Size Badge */}
-              <div className="absolute top-6 left-6 z-20">
-                <div className="backdrop-blur-xl bg-white/20 border border-white/30 rounded-2xl px-6 py-3 shadow-2xl">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{currentPaperSizeOption.icon}</span>
-                    <div>
-                      <div className="text-white font-semibold text-sm">
-                        {currentPaperSizeOption.label}
-                      </div>
-                      <div className="text-white/70 text-xs">
-                        {currentLayout.width}×{currentLayout.height}\" • {optimalLayout.photos} photos • {quality === 'high' ? '300' : '200'} DPI
-                      </div>
+            {/* Paper Size Badge - Moved outside preview */}
+            <div className="mb-4">
+              <div className="backdrop-blur-xl bg-white/20 border border-white/30 rounded-2xl px-6 py-3 shadow-2xl inline-block">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{currentPaperSizeOption.icon}</span>
+                  <div>
+                    <div className="text-white font-semibold text-sm">
+                      {currentPaperSizeOption.label}
+                    </div>
+                    <div className="text-white/70 text-xs">
+                      {currentLayout.width}×{currentLayout.height}\" • {optimalLayout.photos} photos • {quality === 'high' ? '300' : '200'} DPI
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Preview Area */}
+            <div className="flex items-center justify-center bg-gradient-to-br from-white/5 to-white/10 rounded-3xl p-8 min-h-[700px] max-h-[900px] relative overflow-auto border border-white/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 opacity-50" />
 
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}

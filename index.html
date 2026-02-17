@@ -46,7 +46,7 @@
       <!-- Favicons -->
       <link rel="icon" href="/favicon.ico" sizes="32x32" />
       <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
 
       <!-- PWA Manifest -->
       <link rel="manifest" href="/manifest.json" />
@@ -60,6 +60,72 @@
       <!-- Performance Hints -->
       <meta name="format-detection" content="telephone=no" />
       <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+      <!-- Prevent Theme Flicker -->
+      <style>
+        /* Apply dark background immediately to prevent flash */
+        html {
+          background: linear-gradient(to bottom right, #1e1b4b, #581c87, #831843);
+          min-height: 100vh;
+        }
+        body {
+          margin: 0;
+          background: transparent;
+        }
+        /* Prevent layout shift during load */
+        #root {
+          min-height: 100vh;
+        }
+        /* Optimize rendering performance */
+        * {
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Reduce animations to prevent flickering */
+        @media (prefers-reduced-motion: no-preference) {
+          html {
+            scroll-behavior: smooth;
+          }
+        }
+
+        /* Optimize all elements for GPU rendering to prevent flickering */
+        body, #root {
+          transform: translate3d(0, 0, 0);
+          -webkit-transform: translate3d(0, 0, 0);
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        /* Buy Me a Coffee - Ensure always visible and fixed */
+        .bmc-btn-container {
+          position: fixed !important;
+          bottom: 20px !important;
+          right: 20px !important;
+          z-index: 9999 !important;
+          transform: translate3d(0, 0, 0) !important;
+        }
+
+        /* Prevent Buy Me a Coffee from causing layout shifts */
+        #bmc-wbtn {
+          position: fixed !important;
+          bottom: 20px !important;
+          right: 20px !important;
+          z-index: 9999 !important;
+        }
+      </style>
+      <script>
+        // Load theme before React to prevent flicker
+        (function() {
+          try {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+          } catch (e) {
+            // LocalStorage might be blocked, use default
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        })();
+      </script>
 
       <!-- Schema.org Structured Data -->
       <script type="application/ld+json">
@@ -97,6 +163,9 @@
     <body>
       <div id="root"></div>
       <script type="module" src="/src/main.tsx"></script>
+
+      <!-- Buy Me a Coffee Floating Widget -->
+      <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="NishithaAnil" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
     </body>
   </html>
   
