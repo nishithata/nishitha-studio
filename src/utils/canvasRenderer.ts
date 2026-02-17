@@ -78,7 +78,7 @@ function createEditedImage(
     lightgray: '#f3f4f6',
     lightblue: '#dbeafe',
     cream: '#fef3c7',
-    original: '#ffffff'
+    original: '#ffffff',
   };
   ctx.fillStyle = bgColors[options.backgroundColor || 'original'] || '#ffffff';
   ctx.fillRect(0, 0, editCanvas.width, editCanvas.height);
@@ -133,13 +133,7 @@ function createEditedImage(
   }
 
   // Draw image centered with transformations applied
-  ctx.drawImage(
-    sourceImage,
-    -drawWidth / 2 + panX,
-    -drawHeight / 2 + panY,
-    drawWidth,
-    drawHeight
-  );
+  ctx.drawImage(sourceImage, -drawWidth / 2 + panX, -drawHeight / 2 + panY, drawWidth, drawHeight);
 
   ctx.restore();
 
@@ -149,10 +143,7 @@ function createEditedImage(
 /**
  * Creates a photo sheet canvas with the specified photo dimensions
  */
-export function createPhotoSheet(
-  image: HTMLImageElement,
-  options: RenderOptions
-): RenderResult {
+export function createPhotoSheet(image: HTMLImageElement, options: RenderOptions): RenderResult {
   const layout = LAYOUTS[options.paperSize];
   if (!layout) {
     throw new Error(`Unknown paper size: ${options.paperSize}`);
@@ -193,11 +184,17 @@ export function createPhotoSheet(
   console.log(`Canvas: ${canvasWidth}px × ${canvasHeight}px`);
   console.log(`Photo size: ${photoWidth}" × ${photoHeight}"`);
   console.log(`Photo size in pixels: ${photoWidthPx}px × ${photoHeightPx}px`);
-  console.log(`Active Layout: ${activeLayout.cols}×${activeLayout.rows} = ${activeLayout.photos} photos`);
-  console.log(`Custom spacing: ${activeLayout.useCustomSpacing}, Type: ${activeLayout.spacingType || 'N/A'}`);
+  console.log(
+    `Active Layout: ${activeLayout.cols}×${activeLayout.rows} = ${activeLayout.photos} photos`
+  );
+  console.log(
+    `Custom spacing: ${activeLayout.useCustomSpacing}, Type: ${activeLayout.spacingType || 'N/A'}`
+  );
   console.log(`Landscape orientation: ${activeLayout.useLandscapeOrientation || false}`);
   console.log(`Edited image dimensions: ${editedImage.width}px × ${editedImage.height}px`);
-  console.log(`Edits applied: zoom=${options.zoom}, rotation=${options.rotation}, brightness=${options.brightness}, contrast=${options.contrast}`);
+  console.log(
+    `Edits applied: zoom=${options.zoom}, rotation=${options.rotation}, brightness=${options.brightness}, contrast=${options.contrast}`
+  );
   console.log('============================');
 
   // Create canvas
@@ -221,35 +218,128 @@ export function createPhotoSheet(
   // Handle custom spacing layouts - now passing editedImage instead of original image
   if (activeLayout.useCustomSpacing) {
     if (activeLayout.spacingType === 'single-centered-with-guides') {
-      renderSingleCenteredWithGuides(ctx, editedImage, activeLayout, photoWidthPx, photoHeightPx, canvasWidth, canvasHeight, dpi, options);
+      renderSingleCenteredWithGuides(
+        ctx,
+        editedImage,
+        activeLayout,
+        photoWidthPx,
+        photoHeightPx,
+        canvasWidth,
+        canvasHeight,
+        dpi,
+        options
+      );
     } else if (
       activeLayout.spacingType === '4x6-2photos-safe-margins-grid' ||
       activeLayout.spacingType === '4x6-2photos-safe-margins-plain' ||
       activeLayout.spacingType === 'vertical-apart-grid' ||
       activeLayout.spacingType === 'vertical-apart-plain'
     ) {
-      render4x6TwoPhotosLayout(ctx, editedImage, activeLayout, photoWidthPx, photoHeightPx, canvasWidth, canvasHeight, dpi, options, layout.forceGrid);
+      render4x6TwoPhotosLayout(
+        ctx,
+        editedImage,
+        activeLayout,
+        photoWidthPx,
+        photoHeightPx,
+        canvasWidth,
+        canvasHeight,
+        dpi,
+        options,
+        layout.forceGrid
+      );
     } else if (
       activeLayout.spacingType === 'horizontal-apart-grid' ||
       activeLayout.spacingType === 'horizontal-apart-plain'
     ) {
-      renderHorizontalApartLayout(ctx, editedImage, activeLayout, photoWidthPx, photoHeightPx, canvasWidth, canvasHeight, dpi, gapSizePx, options, layout.forceGrid);
+      renderHorizontalApartLayout(
+        ctx,
+        editedImage,
+        activeLayout,
+        photoWidthPx,
+        photoHeightPx,
+        canvasWidth,
+        canvasHeight,
+        dpi,
+        gapSizePx,
+        options,
+        layout.forceGrid
+      );
     } else if (
       activeLayout.spacingType === '4x6-4photos-safe-margins' ||
       activeLayout.spacingType === 'vertical-centered'
     ) {
-      render4x6FourPhotosLayout(ctx, editedImage, activeLayout, photoWidthPx, photoHeightPx, canvasWidth, canvasHeight, dpi, options);
+      render4x6FourPhotosLayout(
+        ctx,
+        editedImage,
+        activeLayout,
+        photoWidthPx,
+        photoHeightPx,
+        canvasWidth,
+        canvasHeight,
+        dpi,
+        options
+      );
     } else if (activeLayout.spacingType === '4x6-6photos-safe-margins') {
-      render4x6SixPhotosLayout(ctx, editedImage, activeLayout, photoWidthPx, photoHeightPx, canvasWidth, canvasHeight, dpi, options);
+      render4x6SixPhotosLayout(
+        ctx,
+        editedImage,
+        activeLayout,
+        photoWidthPx,
+        photoHeightPx,
+        canvasWidth,
+        canvasHeight,
+        dpi,
+        options
+      );
     } else if (activeLayout.spacingType === 'grid-aligned') {
-      renderGridAlignedLayout(ctx, editedImage, activeLayout, photoWidthPx, photoHeightPx, dpi, canvasWidth, canvasHeight, options);
+      renderGridAlignedLayout(
+        ctx,
+        editedImage,
+        activeLayout,
+        photoWidthPx,
+        photoHeightPx,
+        dpi,
+        canvasWidth,
+        canvasHeight,
+        options
+      );
     } else if (activeLayout.spacingType === '6x8-grid-compact') {
-      render6x8CompactGrid(ctx, editedImage, activeLayout, photoWidthPx, photoHeightPx, canvasWidth, canvasHeight, dpi, options);
+      render6x8CompactGrid(
+        ctx,
+        editedImage,
+        activeLayout,
+        photoWidthPx,
+        photoHeightPx,
+        canvasWidth,
+        canvasHeight,
+        dpi,
+        options
+      );
     } else if (activeLayout.spacingType === '8x10-grid-compact') {
-      render8x10CompactGrid(ctx, editedImage, activeLayout, photoWidthPx, photoHeightPx, canvasWidth, canvasHeight, dpi, options);
+      render8x10CompactGrid(
+        ctx,
+        editedImage,
+        activeLayout,
+        photoWidthPx,
+        photoHeightPx,
+        canvasWidth,
+        canvasHeight,
+        dpi,
+        options
+      );
     }
   } else {
-    renderStandardGrid(ctx, editedImage, activeLayout, photoWidthPx, photoHeightPx, gapSizePx, canvasWidth, canvasHeight, options);
+    renderStandardGrid(
+      ctx,
+      editedImage,
+      activeLayout,
+      photoWidthPx,
+      photoHeightPx,
+      gapSizePx,
+      canvasWidth,
+      canvasHeight,
+      options
+    );
   }
 
   return {
@@ -268,7 +358,15 @@ export function createPhotoSheet(
 function renderSingleCenteredWithGuides(
   ctx: CanvasRenderingContext2D,
   image: HTMLImageElement | HTMLCanvasElement,
-  layout: Layout | { cols: number; rows: number; photos: number; useCustomSpacing: boolean; spacingType?: string },
+  layout:
+    | Layout
+    | {
+        cols: number;
+        rows: number;
+        photos: number;
+        useCustomSpacing: boolean;
+        spacingType?: string;
+      },
   photoWidthPx: number,
   photoHeightPx: number,
   canvasWidth: number,
@@ -396,7 +494,15 @@ function renderSingleCenteredWithGuides(
 function render4x6TwoPhotosLayout(
   ctx: CanvasRenderingContext2D,
   image: HTMLImageElement | HTMLCanvasElement,
-  layout: Layout | { cols: number; rows: number; photos: number; useCustomSpacing: boolean; spacingType?: string },
+  layout:
+    | Layout
+    | {
+        cols: number;
+        rows: number;
+        photos: number;
+        useCustomSpacing: boolean;
+        spacingType?: string;
+      },
   photoWidthPx: number,
   photoHeightPx: number,
   canvasWidth: number,
@@ -421,7 +527,7 @@ function render4x6TwoPhotosLayout(
   // Calculate optimal placement with safe margins
   // Available space: paper height - 2 photos - safe margins (top and bottom)
   const totalPhotosHeight = 2 * photoHeightInches;
-  const availableSpace = paperHeightInches - totalPhotosHeight - (2 * 0.25); // Subtract top and bottom margins
+  const availableSpace = paperHeightInches - totalPhotosHeight - 2 * 0.25; // Subtract top and bottom margins
 
   // Distribute remaining space: safe margin + gap between photos
   const topMargin = safeMargin;
@@ -482,7 +588,15 @@ function render4x6TwoPhotosLayout(
 function renderHorizontalApartLayout(
   ctx: CanvasRenderingContext2D,
   image: HTMLImageElement | HTMLCanvasElement,
-  layout: Layout | { cols: number; rows: number; photos: number; useCustomSpacing: boolean; spacingType?: string },
+  layout:
+    | Layout
+    | {
+        cols: number;
+        rows: number;
+        photos: number;
+        useCustomSpacing: boolean;
+        spacingType?: string;
+      },
   photoWidthPx: number,
   photoHeightPx: number,
   canvasWidth: number,
@@ -568,7 +682,15 @@ function renderHorizontalApartLayout(
 function render4x6FourPhotosLayout(
   ctx: CanvasRenderingContext2D,
   image: HTMLImageElement | HTMLCanvasElement,
-  layout: Layout | { cols: number; rows: number; photos: number; useCustomSpacing: boolean; spacingType?: string },
+  layout:
+    | Layout
+    | {
+        cols: number;
+        rows: number;
+        photos: number;
+        useCustomSpacing: boolean;
+        spacingType?: string;
+      },
   photoWidthPx: number,
   photoHeightPx: number,
   canvasWidth: number,
@@ -584,12 +706,12 @@ function render4x6FourPhotosLayout(
   const safeMargin = 0.25 * dpi;
 
   // Calculate available space
-  const availableWidth = canvasWidth - (2 * safeMargin);
-  const availableHeight = canvasHeight - (2 * safeMargin);
+  const availableWidth = canvasWidth - 2 * safeMargin;
+  const availableHeight = canvasHeight - 2 * safeMargin;
 
   // For 4-photo layout: NO horizontal gap, only vertical gap
   const gapX = 0;
-  const gapY = Math.max(0.125 * dpi, (availableHeight - (2 * actualPhotoHeight)) / 3);
+  const gapY = Math.max(0.125 * dpi, (availableHeight - 2 * actualPhotoHeight) / 3);
 
   // Calculate total grid size
   const totalPhotosWidth = 2 * actualPhotoWidth;
@@ -648,7 +770,15 @@ function render4x6FourPhotosLayout(
 function render4x6SixPhotosLayout(
   ctx: CanvasRenderingContext2D,
   image: HTMLImageElement | HTMLCanvasElement,
-  layout: Layout | { cols: number; rows: number; photos: number; useCustomSpacing: boolean; spacingType?: string },
+  layout:
+    | Layout
+    | {
+        cols: number;
+        rows: number;
+        photos: number;
+        useCustomSpacing: boolean;
+        spacingType?: string;
+      },
   photoWidthPx: number,
   photoHeightPx: number,
   canvasWidth: number,
@@ -664,8 +794,8 @@ function render4x6SixPhotosLayout(
   const safeMargin = 0.25 * dpi;
 
   // Calculate available space
-  const availableWidth = canvasWidth - (2 * safeMargin);
-  const availableHeight = canvasHeight - (2 * safeMargin);
+  const availableWidth = canvasWidth - 2 * safeMargin;
+  const availableHeight = canvasHeight - 2 * safeMargin;
 
   // For 6-photo layout: NO gaps at all
   const gapX = 0;
@@ -727,7 +857,15 @@ function render4x6SixPhotosLayout(
 function renderGridAlignedLayout(
   ctx: CanvasRenderingContext2D,
   image: HTMLImageElement | HTMLCanvasElement,
-  layout: Layout | { cols: number; rows: number; photos: number; useCustomSpacing: boolean; spacingType?: string },
+  layout:
+    | Layout
+    | {
+        cols: number;
+        rows: number;
+        photos: number;
+        useCustomSpacing: boolean;
+        spacingType?: string;
+      },
   photoWidthPx: number,
   photoHeightPx: number,
   dpi: number,
@@ -784,7 +922,15 @@ function renderGridAlignedLayout(
 function render6x8CompactGrid(
   ctx: CanvasRenderingContext2D,
   image: HTMLImageElement | HTMLCanvasElement,
-  layout: Layout | { cols: number; rows: number; photos: number; useCustomSpacing: boolean; spacingType?: string },
+  layout:
+    | Layout
+    | {
+        cols: number;
+        rows: number;
+        photos: number;
+        useCustomSpacing: boolean;
+        spacingType?: string;
+      },
   photoWidthPx: number,
   photoHeightPx: number,
   canvasWidth: number,
@@ -800,16 +946,16 @@ function render6x8CompactGrid(
   const minimalMargin = 0.05 * dpi;
 
   // Calculate available space
-  const availableWidth = canvasWidth - (2 * minimalMargin);
-  const availableHeight = canvasHeight - (2 * minimalMargin);
+  const availableWidth = canvasWidth - 2 * minimalMargin;
+  const availableHeight = canvasHeight - 2 * minimalMargin;
 
   // For 6×8" with 2×2" photos: 3 cols × 4 rows with minimal gaps
   const cols = 3;
   const rows = 4;
 
   // Calculate minimal gaps to fit photos evenly
-  const gapX = (availableWidth - (cols * actualPhotoWidth)) / (cols - 1);
-  const gapY = (availableHeight - (rows * actualPhotoHeight)) / (rows - 1);
+  const gapX = (availableWidth - cols * actualPhotoWidth) / (cols - 1);
+  const gapY = (availableHeight - rows * actualPhotoHeight) / (rows - 1);
 
   // Calculate total grid size
   const totalPhotosWidth = cols * actualPhotoWidth + (cols - 1) * gapX;
@@ -820,10 +966,10 @@ function render6x8CompactGrid(
   const startY = (canvasHeight - totalPhotosHeight) / 2;
 
   console.log('=== 6×8 Compact Grid Layout ===');
-  console.log(`Paper: ${canvasWidth / dpi}\" × ${canvasHeight / dpi}\"`);
-  console.log(`Photo: ${actualPhotoWidth / dpi}\" × ${actualPhotoHeight / dpi}\"`);
-  console.log(`Minimal margin: ${(minimalMargin / dpi).toFixed(3)}\"`);
-  console.log(`Gap X: ${(gapX / dpi).toFixed(3)}\", Gap Y: ${(gapY / dpi).toFixed(3)}\"`);
+  console.log(`Paper: ${canvasWidth / dpi}" × ${canvasHeight / dpi}"`);
+  console.log(`Photo: ${actualPhotoWidth / dpi}" × ${actualPhotoHeight / dpi}"`);
+  console.log(`Minimal margin: ${(minimalMargin / dpi).toFixed(3)}"`);
+  console.log(`Gap X: ${(gapX / dpi).toFixed(3)}", Gap Y: ${(gapY / dpi).toFixed(3)}"`);
   console.log(`Grid: ${cols}×${rows} = ${cols * rows} photos`);
   console.log(`Start: (${startX}px, ${startY}px)`);
   console.log('================================');
@@ -869,7 +1015,15 @@ function render6x8CompactGrid(
 function render8x10CompactGrid(
   ctx: CanvasRenderingContext2D,
   image: HTMLImageElement | HTMLCanvasElement,
-  layout: Layout | { cols: number; rows: number; photos: number; useCustomSpacing: boolean; spacingType?: string },
+  layout:
+    | Layout
+    | {
+        cols: number;
+        rows: number;
+        photos: number;
+        useCustomSpacing: boolean;
+        spacingType?: string;
+      },
   photoWidthPx: number,
   photoHeightPx: number,
   canvasWidth: number,
@@ -899,8 +1053,8 @@ function render8x10CompactGrid(
   const startY = (canvasHeight - totalPhotosHeight) / 2;
 
   console.log('=== 8×10 Compact Grid Layout ===');
-  console.log(`Paper: ${canvasWidth / dpi}\" × ${canvasHeight / dpi}\"`);
-  console.log(`Photo: ${actualPhotoWidth / dpi}\" × ${actualPhotoHeight / dpi}\"`);
+  console.log(`Paper: ${canvasWidth / dpi}" × ${canvasHeight / dpi}"`);
+  console.log(`Photo: ${actualPhotoWidth / dpi}" × ${actualPhotoHeight / dpi}"`);
   console.log(`Perfect fit - no gaps needed`);
   console.log(`Grid: ${cols}×${rows} = ${cols * rows} photos`);
   console.log(`Start: (${startX}px, ${startY}px)`);
@@ -946,7 +1100,15 @@ function render8x10CompactGrid(
 function renderStandardGrid(
   ctx: CanvasRenderingContext2D,
   image: HTMLImageElement | HTMLCanvasElement,
-  layout: Layout | { cols: number; rows: number; photos: number; useCustomSpacing: boolean; spacingType?: string },
+  layout:
+    | Layout
+    | {
+        cols: number;
+        rows: number;
+        photos: number;
+        useCustomSpacing: boolean;
+        spacingType?: string;
+      },
   photoWidthPx: number,
   photoHeightPx: number,
   gapSizePx: number,

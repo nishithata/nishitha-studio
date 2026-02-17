@@ -21,10 +21,7 @@ declare global {
 /**
  * Track custom events in Google Analytics
  */
-export const trackEvent = (
-  eventName: string,
-  params?: EventParams
-): void => {
+export const trackEvent = (eventName: string, params?: EventParams): void => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, params);
     if (import.meta.env.DEV) {
@@ -79,11 +76,7 @@ export const trackUserAction = (
 /**
  * Track errors
  */
-export const trackError = (
-  errorName: string,
-  errorMessage: string,
-  errorStack?: string
-): void => {
+export const trackError = (errorName: string, errorMessage: string, errorStack?: string): void => {
   trackEvent('error', {
     error_name: errorName,
     error_message: errorMessage,

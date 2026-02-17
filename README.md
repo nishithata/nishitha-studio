@@ -18,6 +18,7 @@
 ## 🌟 Features
 
 ### Photo Editing
+
 - ✨ **Advanced Editing** - Adjust brightness, contrast, zoom, rotation, and positioning
 - 🎨 **Auto-Enhancement** - One-click brightness and contrast optimization
 - 📐 **Grid Overlay** - Perfect alignment with golden ratio and rule of thirds
@@ -25,6 +26,7 @@
 - 🎯 **Precision Controls** - Fine-tune every aspect of your photo
 
 ### Size Standards
+
 - 🇺🇸 **US Standards** - 2×2" (Passport), 1.5×2" (Visa)
 - 🇮🇳 **Indian Standards** - 51×51mm, 35×35mm
 - 🇪🇺 **European Standards** - 35×45mm
@@ -32,6 +34,7 @@
 - 📱 **300 DPI Output** - Professional print quality
 
 ### Background Options
+
 - ⚪ White (Most common)
 - 🔵 Light Blue
 - ⚫ Light Gray
@@ -39,12 +42,14 @@
 - 🖼️ Original (Keep existing background)
 
 ### Print Layouts
+
 - 📄 **Multiple Paper Sizes** - 4×6", 5×7", 6×8", 8×10"
 - 🔢 **Grid Layouts** - 2-grid, 4-grid, 6-grid, 8-grid
 - 🎨 **Customizable Borders** - Adjust border width and color
 - 📏 **Optimal Spacing** - Automatically calculated for easy cutting
 
 ### Privacy & Performance
+
 - 🔒 **100% Client-Side** - No uploads, your photos never leave your device
 - ⚡ **Lightning Fast** - Instant processing with HTML5 Canvas
 - 📱 **Mobile Optimized** - Works perfectly on phones and tablets
@@ -52,6 +57,7 @@
 - 🍎 **HEIC Support** - Automatic conversion of iPhone photos
 
 ### Additional Features
+
 - 🎨 **6 Beautiful Themes** - Dark, Midnight, Sunset, Ocean, Forest, Rose
 - 🌍 **Multi-Language** - Support for multiple languages
 - 📸 **Camera Capture** - Take photos directly from your webcam
@@ -109,6 +115,7 @@ Build output will be in the `build/` directory.
 ## 📖 Usage
 
 ### Step 1: Upload & Edit Photo
+
 1. Click "**Choose Photo**" or **drag & drop** your image (JPG, PNG, HEIC)
 2. Select passport photo size (US 2×2", India 51×51mm, etc.)
 3. Adjust brightness, contrast, zoom, and rotation
@@ -117,6 +124,7 @@ Build output will be in the `build/` directory.
 6. Preview with before/after comparison
 
 ### Step 2: Generate Print Sheet
+
 1. Click "**Next**" to proceed to print layout
 2. Select paper size (4×6", 5×7", 6×8", 8×10")
 3. Choose grid layout (2-grid, 4-grid, 6-grid, 8-grid)
@@ -125,6 +133,7 @@ Build output will be in the `build/` directory.
 6. Click "**Download Sheet**" to save as PNG
 
 ### Keyboard Shortcuts
+
 - **Ctrl+Z** - Undo
 - **Ctrl+Y** - Redo
 - **Ctrl+S** - Save/Download (when in Step 2)
@@ -136,11 +145,13 @@ Build output will be in the `build/` directory.
 ## 🛠️ Technology Stack
 
 ### Core Framework
+
 - **[React 18.3](https://react.dev/)** - Modern UI library with hooks
 - **[TypeScript 5.6](https://www.typescriptlang.org/)** - Type-safe development
 - **[Vite 6.4](https://vitejs.dev/)** - Next-generation build tool (10x faster than Webpack)
 
 ### UI & Styling
+
 - **[Tailwind CSS 3.4](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[Radix UI](https://www.radix-ui.com/)** - Accessible, unstyled component primitives (30+ components)
 - **[Lucide React](https://lucide.dev/)** - Beautiful icon library
@@ -148,14 +159,17 @@ Build output will be in the `build/` directory.
 - **[Tailwind Merge](https://github.com/dcastil/tailwind-merge)** - Merge Tailwind classes intelligently
 
 ### Image Processing
+
 - **HTML5 Canvas API** - Client-side image manipulation
 - **[heic2any](https://www.npmjs.com/package/heic2any)** - HEIC to JPEG conversion for iPhone photos
 - **[qrcode](https://www.npmjs.com/package/qrcode)** - QR code generation
 
 ### Form Management
+
 - **[React Hook Form](https://react-hook-form.com/)** - Performant form validation
 
 ### UI Components
+
 - **[sonner](https://sonner.emilkowal.ski/)** - Beautiful toast notifications
 - **[embla-carousel](https://www.embla-carousel.com/)** - Smooth carousels
 - **[cmdk](https://cmdk.paco.me/)** - Command palette
@@ -163,11 +177,13 @@ Build output will be in the `build/` directory.
 - **[react-resizable-panels](https://github.com/bvaughn/react-resizable-panels)** - Resizable layouts
 
 ### Analytics & Monitoring
+
 - **[Google Analytics 4](https://analytics.google.com/)** - User behavior tracking
 - **[Microsoft Clarity](https://clarity.microsoft.com/)** - Session recording and heatmaps
 - **[Vercel Analytics](https://vercel.com/analytics)** - Performance monitoring
 
 ### Build & Deployment
+
 - **[Vercel](https://vercel.com/)** - Hosting and deployment
 - **[vite-plugin-compression](https://github.com/vbenjs/vite-plugin-compression)** - Gzip and Brotli compression
 - **[@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)** - Fast Refresh with SWC
@@ -242,6 +258,7 @@ npm test                 # Run tests
 ### Adding Your Own Analytics
 
 1. Copy `.env.example` to `.env.local`:
+
    ```bash
    cp .env.example .env.local
    ```
@@ -255,6 +272,7 @@ npm test                 # Run tests
 ### Changing Themes
 
 Themes are defined in `src/contexts/ThemeContext.tsx`. You can:
+
 - Add new themes
 - Customize existing color schemes
 - Modify gradient backgrounds
@@ -270,8 +288,8 @@ export const photoSizes = {
     height: 600,
     unit: 'px',
     dpi: 300,
-    displayName: 'Your Custom Size'
-  }
+    displayName: 'Your Custom Size',
+  },
 };
 ```
 
@@ -279,17 +297,18 @@ export const photoSizes = {
 
 ## 🌐 Browser Support
 
-| Browser | Version | Support |
-|---------|---------|---------|
-| Chrome  | 90+     | ✅ Full |
-| Firefox | 88+     | ✅ Full |
-| Safari  | 14+     | ✅ Full |
-| Edge    | 90+     | ✅ Full |
-| Opera   | 76+     | ✅ Full |
-| Mobile Safari | 14+ | ✅ Full |
-| Chrome Mobile | 90+ | ✅ Full |
+| Browser       | Version | Support |
+| ------------- | ------- | ------- |
+| Chrome        | 90+     | ✅ Full |
+| Firefox       | 88+     | ✅ Full |
+| Safari        | 14+     | ✅ Full |
+| Edge          | 90+     | ✅ Full |
+| Opera         | 76+     | ✅ Full |
+| Mobile Safari | 14+     | ✅ Full |
+| Chrome Mobile | 90+     | ✅ Full |
 
 **Required Browser Features:**
+
 - HTML5 Canvas API
 - CSS Grid & Flexbox
 - ES2020+ JavaScript
@@ -335,6 +354,7 @@ npx serve -s build -p 3000
 ### Common Issues
 
 **Issue:** `Module not found` errors
+
 ```bash
 # Solution: Clear cache and reinstall
 rm -rf node_modules package-lock.json
@@ -342,12 +362,15 @@ npm install
 ```
 
 **Issue:** HEIC images not converting
+
 - Solution: Update heic2any package: `npm update heic2any`
 
 **Issue:** Canvas rendering issues on mobile
+
 - Solution: Check device memory limits (Canvas size limited by device RAM)
 
 **Issue:** Build fails with TypeScript errors
+
 ```bash
 # Solution: Run type check to see errors
 npm run type-check
@@ -380,6 +403,7 @@ Contributions are welcome! Please follow these steps:
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 **MIT License Summary:**
+
 - ✅ Commercial use allowed
 - ✅ Modification allowed
 - ✅ Distribution allowed

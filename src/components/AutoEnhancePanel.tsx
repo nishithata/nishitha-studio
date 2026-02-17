@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 import { GlassCard } from './GlassCard';
 import { Badge } from './ui/badge';
 import { autoEnhance, EnhancementResult } from '../utils/autoEnhance';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 interface AutoEnhancePanelProps {
   uploadedImage: string | null;
@@ -101,10 +101,7 @@ export function AutoEnhancePanel({ uploadedImage, onApplyEnhancement }: AutoEnha
                   className={`w-full h-auto p-4 bg-gradient-to-br ${style.gradient} hover:opacity-90 text-white border-0 rounded-xl transition-all group disabled:opacity-50`}
                 >
                   <div className="flex flex-col items-center gap-2 w-full">
-                    <motion.div
-                      whileHover={{ scale: 1.2, rotate: 10 }}
-                      className="text-3xl"
-                    >
+                    <motion.div whileHover={{ scale: 1.2, rotate: 10 }} className="text-3xl">
                       {style.icon}
                     </motion.div>
                     <div className="text-center">
@@ -132,8 +129,8 @@ export function AutoEnhancePanel({ uploadedImage, onApplyEnhancement }: AutoEnha
           <p className="text-xs text-white/80 flex items-start gap-2">
             <Sparkles className="w-3 h-3 mt-0.5 flex-shrink-0 text-yellow-300" />
             <span>
-              Auto-enhance analyzes your photo and applies optimal adjustments instantly. 
-              You can fine-tune the results manually after.
+              Auto-enhance analyzes your photo and applies optimal adjustments instantly. You can
+              fine-tune the results manually after.
             </span>
           </p>
         </div>

@@ -69,6 +69,8 @@ export interface Layout {
   spacingType?: string;
   forceGrid?: boolean;
   forceNoGrid?: boolean;
+  useCustomSpacing?: boolean;
+  useLandscapeOrientation?: boolean;
 }
 
 export const LAYOUTS: Record<string, Layout> = {

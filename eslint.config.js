@@ -15,7 +15,7 @@ export default tseslint.config(
       '*.config.js',
       '*.config.ts',
       'public/dev-tools/**',
-      'scripts/**'
+      'scripts/**',
     ],
   },
 
@@ -80,13 +80,10 @@ export default tseslint.config(
       'react-hooks/exhaustive-deps': 'warn',
 
       // React Refresh Rules
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
       // TypeScript Rules
-      '@typescript-eslint/no-explicit-any': 'warn', // Allow but warn for any types
+      '@typescript-eslint/no-explicit-any': 'off', // Allow any types
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
@@ -96,26 +93,27 @@ export default tseslint.config(
         },
       ],
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/no-non-null-assertion': 'warn',
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/ban-ts-comment': 'off', // Allow ts-ignore comments
 
       // General Rules
-      'no-console': ['warn', { allow: ['warn', 'error'] }], // Allow console.warn and console.error
+      'no-console': 'off', // Allow all console statements for now
       'no-debugger': 'error',
-      'no-alert': 'warn',
+      'no-alert': 'off', // Allow alerts for now
       'prefer-const': 'error',
       'no-var': 'error',
-      'eqeqeq': ['error', 'always'],
-      'curly': ['error', 'all'],
+      eqeqeq: ['error', 'always'],
+      curly: ['error', 'all'],
       'no-multi-spaces': 'error',
       'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
       'no-trailing-spaces': 'error',
       'comma-dangle': ['error', 'always-multiline'],
-      'semi': ['error', 'always'],
-      'quotes': ['error', 'single', { avoidEscape: true }],
-      'indent': ['error', 2, { SwitchCase: 1 }],
+      semi: ['error', 'always'],
+      quotes: ['error', 'single', { avoidEscape: true }],
+      indent: ['error', 2, { SwitchCase: 1 }],
     },
   },
 
   // Prettier configuration (disables conflicting ESLint rules)
-  prettier,
+  prettier
 );

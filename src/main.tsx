@@ -1,11 +1,10 @@
-
-import { createRoot } from "react-dom/client";
+import { createRoot } from 'react-dom/client';
 import { inject } from '@vercel/analytics';
-import { initWebVitals } from "./utils/webVitals";
-import App from "./App.tsx";
-import ErrorBoundary from "./components/ErrorBoundary.tsx";
-import "./utils/errorHandler"; // Initialize global error handler
-import "./index.css";
+import { initWebVitals } from './utils/webVitals';
+import App from './App.tsx';
+import ErrorBoundary from './components/ErrorBoundary.tsx';
+import './utils/errorHandler'; // Initialize global error handler
+import './index.css';
 
 // Initialize Google Analytics (only in production)
 if (import.meta.env.PROD && import.meta.env.VITE_GA_MEASUREMENT_ID) {
@@ -79,7 +78,7 @@ if (import.meta.env.PROD) {
   }
 }
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById('root')!).render(
   <ErrorBoundary>
     <App />
   </ErrorBoundary>

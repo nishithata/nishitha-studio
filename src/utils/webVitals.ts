@@ -53,10 +53,7 @@ const reportToAnalytics = (metric: Metric): void => {
 const reportWithRating = (metric: Metric): void => {
   const rating = getRating(metric);
 
-  logger.log(
-    `[Web Vitals] ${metric.name}: ${metric.value.toFixed(2)} (${rating})`,
-    metric
-  );
+  logger.log(`[Web Vitals] ${metric.name}: ${metric.value.toFixed(2)} (${rating})`, metric);
 
   reportToAnalytics(metric);
 };

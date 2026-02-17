@@ -5,12 +5,12 @@ export interface Translations {
   appName: string;
   appTagline: string;
   supportButton: string;
-  
+
   // Steps
   step: string;
   step1Title: string;
   step2Title: string;
-  
+
   // Photo Editor
   keyboardShortcuts: string;
   proTips: string;
@@ -40,7 +40,7 @@ export interface Translations {
   uploadToStart: string;
   supportedFormats: string;
   nextStep: string;
-  
+
   // Photo Sheet
   paperSize: string;
   gridLayout: string;
@@ -58,7 +58,7 @@ export interface Translations {
   sheetPreview: string;
   backToEditor: string;
   printSheet: string;
-  
+
   // Colors
   original: string;
   white: string;
@@ -68,10 +68,8 @@ export interface Translations {
   black: string;
   gray: string;
   blue: string;
-  
+
   // Keyboard shortcuts
-  zoomIn: string;
-  zoomOut: string;
   rotateClockwise: string;
   rotateCounterClockwise: string;
   movePhotoUp: string;
@@ -80,7 +78,7 @@ export interface Translations {
   movePhotoRight: string;
   resetAdjustments: string;
   showHelp: string;
-  
+
   // Onboarding
   welcomeTitle: string;
   welcomeDescription: string;
@@ -94,7 +92,7 @@ export interface Translations {
   back: string;
   getStarted: string;
   skipTutorial: string;
-  
+
   // Settings
   settings: string;
   language: string;
@@ -102,20 +100,20 @@ export interface Translations {
   imageQuality: string;
   saveSettings: string;
   restoreDefaults: string;
-  
+
   // Help
   help: string;
   faq: string;
   howToUse: string;
   contactSupport: string;
-  
+
   // Quality
   low: string;
   medium: string;
   high: string;
   dark: string;
   bright: string;
-  
+
   // Misc
   close: string;
   save: string;
@@ -129,11 +127,11 @@ export const translations: Record<Language, Translations> = {
     appName: 'Passport Photo Maker',
     appTagline: 'Professional photos in seconds ✨',
     supportButton: 'Buy me a coffee',
-    
+
     step: 'Step',
     step1Title: 'Upload & Adjust',
     step2Title: 'Preview & Print',
-    
+
     keyboardShortcuts: 'Keyboard Shortcuts',
     proTips: 'Pro Tips',
     tip1: 'Face fills 70-80% of frame',
@@ -162,7 +160,7 @@ export const translations: Record<Language, Translations> = {
     uploadToStart: 'Upload a photo to get started',
     supportedFormats: 'Supported: JPG, PNG, HEIC',
     nextStep: 'Next Step',
-    
+
     paperSize: 'Paper Size',
     gridLayout: 'Grid Layout',
     photosPerRow: 'Photos per row',
@@ -179,7 +177,7 @@ export const translations: Record<Language, Translations> = {
     sheetPreview: 'Sheet Preview',
     backToEditor: 'Back to Editor',
     printSheet: 'Print Sheet',
-    
+
     original: 'Original',
     white: 'White',
     lightGray: 'Light Gray',
@@ -197,54 +195,58 @@ export const translations: Record<Language, Translations> = {
     movePhotoRight: 'Move photo right',
     resetAdjustments: 'Reset all adjustments',
     showHelp: 'Show this help dialog',
-    
+
     welcomeTitle: 'Welcome to Passport Photo Maker!',
-    welcomeDescription: 'Create professional passport photos in just 2 easy steps. Let me show you how it works.',
+    welcomeDescription:
+      'Create professional passport photos in just 2 easy steps. Let me show you how it works.',
     step1OnboardTitle: 'Step 1: Upload & Adjust',
-    step1OnboardDescription: 'Upload your photo and use our tools to zoom, rotate, adjust brightness, and position your photo perfectly. Use keyboard shortcuts for precise control!',
+    step1OnboardDescription:
+      'Upload your photo and use our tools to zoom, rotate, adjust brightness, and position your photo perfectly. Use keyboard shortcuts for precise control!',
     step2OnboardTitle: 'Step 2: Print Your Sheet',
-    step2OnboardDescription: 'Customize your photo sheet with different paper sizes, grid layouts, and borders. Then download or print!',
+    step2OnboardDescription:
+      'Customize your photo sheet with different paper sizes, grid layouts, and borders. Then download or print!',
     allSetTitle: "You're All Set!",
-    allSetDescription: 'Press "?" anytime to see keyboard shortcuts. If you find this tool helpful, consider supporting development. Happy photo making!',
+    allSetDescription:
+      'Press "?" anytime to see keyboard shortcuts. If you find this tool helpful, consider supporting development. Happy photo making!',
     next: 'Next',
     back: 'Back',
     getStarted: 'Get Started',
     skipTutorial: 'Skip tutorial',
-    
+
     settings: 'Settings',
     language: 'Language',
     exportFormat: 'Export Format',
     imageQuality: 'Image Quality',
     saveSettings: 'Save Settings',
     restoreDefaults: 'Restore Defaults',
-    
+
     help: 'Help',
     faq: 'FAQ',
     howToUse: 'How to Use',
     contactSupport: 'Contact Support',
-    
+
     low: 'Low',
     medium: 'Medium',
     high: 'High',
     dark: 'Dark',
     bright: 'Bright',
-    
+
     close: 'Close',
     save: 'Save',
     cancel: 'Cancel',
     apply: 'Apply',
     proTip: 'Pro Tip',
   },
-  
+
   es: {
     appName: 'Creador de Fotos de Pasaporte',
     appTagline: 'Fotos profesionales en segundos ✨',
     supportButton: 'Cómprame un café',
-    
+
     step: 'Paso',
     step1Title: 'Subir y Ajustar',
     step2Title: 'Vista Previa e Imprimir',
-    
+
     keyboardShortcuts: 'Atajos de Teclado',
     proTips: 'Consejos Profesionales',
     tip1: 'La cara llena 70-80% del marco',
@@ -273,7 +275,7 @@ export const translations: Record<Language, Translations> = {
     uploadToStart: 'Sube una foto para comenzar',
     supportedFormats: 'Compatible: JPG, PNG, HEIC',
     nextStep: 'Siguiente Paso',
-    
+
     paperSize: 'Tamaño de Papel',
     gridLayout: 'Diseño de Cuadrícula',
     photosPerRow: 'Fotos por fila',
@@ -290,7 +292,7 @@ export const translations: Record<Language, Translations> = {
     sheetPreview: 'Vista Previa de Hoja',
     backToEditor: 'Volver al Editor',
     printSheet: 'Imprimir Hoja',
-    
+
     original: 'Original',
     white: 'Blanco',
     lightGray: 'Gris Claro',
@@ -308,54 +310,58 @@ export const translations: Record<Language, Translations> = {
     movePhotoRight: 'Mover foto derecha',
     resetAdjustments: 'Restablecer todos los ajustes',
     showHelp: 'Mostrar esta ayuda',
-    
+
     welcomeTitle: '¡Bienvenido al Creador de Fotos de Pasaporte!',
-    welcomeDescription: 'Crea fotos profesionales de pasaporte en solo 2 pasos fáciles. Déjame mostrarte cómo funciona.',
+    welcomeDescription:
+      'Crea fotos profesionales de pasaporte en solo 2 pasos fáciles. Déjame mostrarte cómo funciona.',
     step1OnboardTitle: 'Paso 1: Subir y Ajustar',
-    step1OnboardDescription: '¡Sube tu foto y usa nuestras herramientas para hacer zoom, rotar, ajustar el brillo y posicionar tu foto perfectamente!',
+    step1OnboardDescription:
+      '¡Sube tu foto y usa nuestras herramientas para hacer zoom, rotar, ajustar el brillo y posicionar tu foto perfectamente!',
     step2OnboardTitle: 'Paso 2: Imprimir Tu Hoja',
-    step2OnboardDescription: 'Personaliza tu hoja de fotos con diferentes tamaños de papel, diseños de cuadrícula y bordes. ¡Luego descarga o imprime!',
+    step2OnboardDescription:
+      'Personaliza tu hoja de fotos con diferentes tamaños de papel, diseños de cuadrícula y bordes. ¡Luego descarga o imprime!',
     allSetTitle: '¡Todo Listo!',
-    allSetDescription: 'Presiona "?" en cualquier momento para ver los atajos de teclado. Si encuentras útil esta herramienta, considera apoyar el desarrollo. ¡Feliz creación de fotos!',
+    allSetDescription:
+      'Presiona "?" en cualquier momento para ver los atajos de teclado. Si encuentras útil esta herramienta, considera apoyar el desarrollo. ¡Feliz creación de fotos!',
     next: 'Siguiente',
     back: 'Atrás',
     getStarted: 'Comenzar',
     skipTutorial: 'Saltar tutorial',
-    
+
     settings: 'Configuración',
     language: 'Idioma',
     exportFormat: 'Formato de Exportación',
     imageQuality: 'Calidad de Imagen',
     saveSettings: 'Guardar Configuración',
     restoreDefaults: 'Restaurar Predeterminados',
-    
+
     help: 'Ayuda',
     faq: 'Preguntas Frecuentes',
     howToUse: 'Cómo Usar',
     contactSupport: 'Contactar Soporte',
-    
+
     low: 'Baja',
     medium: 'Media',
     high: 'Alta',
     dark: 'Oscuro',
     bright: 'Brillante',
-    
+
     close: 'Cerrar',
     save: 'Guardar',
     cancel: 'Cancelar',
     apply: 'Aplicar',
     proTip: 'Consejo',
   },
-  
+
   fr: {
     appName: 'Créateur de Photos de Passeport',
     appTagline: 'Photos professionnelles en secondes ✨',
     supportButton: 'Offrez-moi un café',
-    
+
     step: 'Étape',
     step1Title: 'Télécharger et Ajuster',
     step2Title: 'Aperçu et Imprimer',
-    
+
     keyboardShortcuts: 'Raccourcis Clavier',
     proTips: 'Conseils Pro',
     tip1: 'Le visage remplit 70-80% du cadre',
@@ -366,7 +372,7 @@ export const translations: Record<Language, Translations> = {
     uploadPhoto: 'Télécharger Photo',
     choosePhoto: 'Choisir Photo',
     changePhoto: 'Changer Photo',
-    fileSize: 'JPG, PNG, HEIC jusqu\'à 10MB',
+    fileSize: "JPG, PNG, HEIC jusqu'à 10MB",
     download: 'Télécharger',
     reset: 'Réinitialiser',
     passportSize: 'Taille Passeport',
@@ -384,7 +390,7 @@ export const translations: Record<Language, Translations> = {
     uploadToStart: 'Téléchargez une photo pour commencer',
     supportedFormats: 'Supporté: JPG, PNG, HEIC',
     nextStep: 'Étape Suivante',
-    
+
     paperSize: 'Taille du Papier',
     gridLayout: 'Disposition Grille',
     photosPerRow: 'Photos par ligne',
@@ -401,7 +407,7 @@ export const translations: Record<Language, Translations> = {
     sheetPreview: 'Aperçu Feuille',
     backToEditor: "Retour à l'Éditeur",
     printSheet: 'Imprimer Feuille',
-    
+
     original: 'Original',
     white: 'Blanc',
     lightGray: 'Gris Clair',
@@ -418,55 +424,59 @@ export const translations: Record<Language, Translations> = {
     movePhotoLeft: 'Déplacer photo à gauche',
     movePhotoRight: 'Déplacer photo à droite',
     resetAdjustments: 'Réinitialiser tous les ajustements',
-    showHelp: "Afficher cette aide",
-    
+    showHelp: 'Afficher cette aide',
+
     welcomeTitle: 'Bienvenue au Créateur de Photos de Passeport!',
-    welcomeDescription: 'Créez des photos de passeport professionnelles en seulement 2 étapes faciles. Laissez-moi vous montrer comment ça marche.',
+    welcomeDescription:
+      'Créez des photos de passeport professionnelles en seulement 2 étapes faciles. Laissez-moi vous montrer comment ça marche.',
     step1OnboardTitle: 'Étape 1: Télécharger et Ajuster',
-    step1OnboardDescription: 'Téléchargez votre photo et utilisez nos outils pour zoomer, pivoter, ajuster la luminosité et positionner votre photo parfaitement!',
+    step1OnboardDescription:
+      'Téléchargez votre photo et utilisez nos outils pour zoomer, pivoter, ajuster la luminosité et positionner votre photo parfaitement!',
     step2OnboardTitle: 'Étape 2: Imprimer Votre Feuille',
-    step2OnboardDescription: 'Personnalisez votre feuille de photos avec différentes tailles de papier, dispositions de grille et bordures. Puis téléchargez ou imprimez!',
+    step2OnboardDescription:
+      'Personnalisez votre feuille de photos avec différentes tailles de papier, dispositions de grille et bordures. Puis téléchargez ou imprimez!',
     allSetTitle: 'Tout Est Prêt!',
-    allSetDescription: 'Appuyez sur "?" à tout moment pour voir les raccourcis clavier. Si vous trouvez cet outil utile, envisagez de soutenir le développement. Bonne création de photos!',
+    allSetDescription:
+      'Appuyez sur "?" à tout moment pour voir les raccourcis clavier. Si vous trouvez cet outil utile, envisagez de soutenir le développement. Bonne création de photos!',
     next: 'Suivant',
     back: 'Retour',
     getStarted: 'Commencer',
     skipTutorial: 'Passer le tutoriel',
-    
+
     settings: 'Paramètres',
     language: 'Langue',
-    exportFormat: 'Format d\'Export',
-    imageQuality: 'Qualité d\'Image',
+    exportFormat: "Format d'Export",
+    imageQuality: "Qualité d'Image",
     saveSettings: 'Sauvegarder Paramètres',
     restoreDefaults: 'Restaurer Défauts',
-    
+
     help: 'Aide',
     faq: 'FAQ',
     howToUse: 'Comment Utiliser',
     contactSupport: 'Contacter Support',
-    
+
     low: 'Faible',
     medium: 'Moyen',
     high: 'Élevé',
     dark: 'Sombre',
     bright: 'Lumineux',
-    
+
     close: 'Fermer',
     save: 'Sauvegarder',
     cancel: 'Annuler',
     apply: 'Appliquer',
     proTip: 'Astuce',
   },
-  
+
   de: {
     appName: 'Passfoto Ersteller',
     appTagline: 'Professionelle Fotos in Sekunden ✨',
     supportButton: 'Kaufe mir einen Kaffee',
-    
+
     step: 'Schritt',
     step1Title: 'Hochladen & Anpassen',
     step2Title: 'Vorschau & Drucken',
-    
+
     keyboardShortcuts: 'Tastaturkürzel',
     proTips: 'Profi-Tipps',
     tip1: 'Gesicht füllt 70-80% des Rahmens',
@@ -495,7 +505,7 @@ export const translations: Record<Language, Translations> = {
     uploadToStart: 'Laden Sie ein Foto hoch, um zu beginnen',
     supportedFormats: 'Unterstützt: JPG, PNG, HEIC',
     nextStep: 'Nächster Schritt',
-    
+
     paperSize: 'Papiergröße',
     gridLayout: 'Rasterlayout',
     photosPerRow: 'Fotos pro Zeile',
@@ -512,7 +522,7 @@ export const translations: Record<Language, Translations> = {
     sheetPreview: 'Blattvorschau',
     backToEditor: 'Zurück zum Editor',
     printSheet: 'Blatt Drucken',
-    
+
     original: 'Original',
     white: 'Weiß',
     lightGray: 'Hellgrau',
@@ -530,54 +540,58 @@ export const translations: Record<Language, Translations> = {
     movePhotoRight: 'Foto nach rechts',
     resetAdjustments: 'Alle Anpassungen zurücksetzen',
     showHelp: 'Diese Hilfe anzeigen',
-    
+
     welcomeTitle: 'Willkommen beim Passfoto Ersteller!',
-    welcomeDescription: 'Erstellen Sie professionelle Passfotos in nur 2 einfachen Schritten. Lassen Sie mich Ihnen zeigen, wie es funktioniert.',
+    welcomeDescription:
+      'Erstellen Sie professionelle Passfotos in nur 2 einfachen Schritten. Lassen Sie mich Ihnen zeigen, wie es funktioniert.',
     step1OnboardTitle: 'Schritt 1: Hochladen & Anpassen',
-    step1OnboardDescription: 'Laden Sie Ihr Foto hoch und verwenden Sie unsere Tools zum Zoomen, Drehen, Anpassen der Helligkeit und perfekten Positionieren Ihres Fotos!',
+    step1OnboardDescription:
+      'Laden Sie Ihr Foto hoch und verwenden Sie unsere Tools zum Zoomen, Drehen, Anpassen der Helligkeit und perfekten Positionieren Ihres Fotos!',
     step2OnboardTitle: 'Schritt 2: Ihr Blatt Drucken',
-    step2OnboardDescription: 'Passen Sie Ihr Fotoblatt mit verschiedenen Papiergrößen, Rasterlayouts und Rahmen an. Dann herunterladen oder drucken!',
+    step2OnboardDescription:
+      'Passen Sie Ihr Fotoblatt mit verschiedenen Papiergrößen, Rasterlayouts und Rahmen an. Dann herunterladen oder drucken!',
     allSetTitle: 'Alles Bereit!',
-    allSetDescription: 'Drücken Sie jederzeit "?" um Tastaturkürzel zu sehen. Wenn Sie dieses Tool hilfreich finden, erwägen Sie die Unterstützung der Entwicklung. Viel Spaß beim Foto-Erstellen!',
+    allSetDescription:
+      'Drücken Sie jederzeit "?" um Tastaturkürzel zu sehen. Wenn Sie dieses Tool hilfreich finden, erwägen Sie die Unterstützung der Entwicklung. Viel Spaß beim Foto-Erstellen!',
     next: 'Weiter',
     back: 'Zurück',
     getStarted: 'Loslegen',
     skipTutorial: 'Tutorial überspringen',
-    
+
     settings: 'Einstellungen',
     language: 'Sprache',
     exportFormat: 'Exportformat',
     imageQuality: 'Bildqualität',
     saveSettings: 'Einstellungen Speichern',
     restoreDefaults: 'Standards Wiederherstellen',
-    
+
     help: 'Hilfe',
     faq: 'FAQ',
     howToUse: 'Wie Benutzen',
     contactSupport: 'Support Kontaktieren',
-    
+
     low: 'Niedrig',
     medium: 'Mittel',
     high: 'Hoch',
     dark: 'Dunkel',
     bright: 'Hell',
-    
+
     close: 'Schließen',
     save: 'Speichern',
     cancel: 'Abbrechen',
     apply: 'Anwenden',
     proTip: 'Profi-Tipp',
   },
-  
+
   zh: {
     appName: '护照照片制作器',
     appTagline: '几秒钟内制作专业照片 ✨',
     supportButton: '请我喝咖啡',
-    
+
     step: '步骤',
     step1Title: '上传和调整',
     step2Title: '预览和打印',
-    
+
     keyboardShortcuts: '键盘快捷键',
     proTips: '专业提示',
     tip1: '脸部占据框架的70-80%',
@@ -604,7 +618,7 @@ export const translations: Record<Language, Translations> = {
     uploadToStart: '上传照片以开始',
     supportedFormats: '支持：JPG, PNG, HEIC',
     nextStep: '下一步',
-    
+
     paperSize: '纸张大小',
     gridLayout: '网格布局',
     photosPerRow: '每行照片数',
@@ -621,7 +635,7 @@ export const translations: Record<Language, Translations> = {
     sheetPreview: '表格预览',
     backToEditor: '返回编辑器',
     printSheet: '打印表格',
-    
+
     original: '原始',
     white: '白色',
     lightGray: '浅灰色',
@@ -630,7 +644,7 @@ export const translations: Record<Language, Translations> = {
     black: '黑色',
     gray: '灰色',
     blue: '蓝色',
-    
+
     zoomIn: '放大',
     zoomOut: '缩小',
     rotateClockwise: '顺时针旋转',
@@ -641,54 +655,57 @@ export const translations: Record<Language, Translations> = {
     movePhotoRight: '向右移动照片',
     resetAdjustments: '重置所有调整',
     showHelp: '显示此帮助',
-    
+
     welcomeTitle: '欢迎使用护照照片制作器！',
     welcomeDescription: '只需2个简单步骤即可创建专业护照照片。让我向您展示它是如何工作的。',
     step1OnboardTitle: '步骤1：上传和调整',
-    step1OnboardDescription: '上传您的照片并使用我们的工具进行缩放、旋转、调整亮度并完美定位您的照片！',
+    step1OnboardDescription:
+      '上传您的照片并使用我们的工具进行缩放、旋转、调整亮度并完美定位您的照片！',
     step2OnboardTitle: '步骤2：打印您的表格',
-    step2OnboardDescription: '使用不同的纸张大小、网格布局和边框自定义您的照片表格。然后下载或打印！',
+    step2OnboardDescription:
+      '使用不同的纸张大小、网格布局和边框自定义您的照片表格。然后下载或打印！',
     allSetTitle: '准备就绪！',
-    allSetDescription: '随时按"?"查看键盘快捷键。如果您觉得此工具有用，请考虑支持开发。祝您制作愉快！',
+    allSetDescription:
+      '随时按"?"查看键盘快捷键。如果您觉得此工具有用，请考虑支持开发。祝您制作愉快！',
     next: '下一步',
     back: '返回',
     getStarted: '开始',
     skipTutorial: '跳过教程',
-    
+
     settings: '设置',
     language: '语言',
     exportFormat: '导出格式',
     imageQuality: '图像质量',
     saveSettings: '保存设置',
     restoreDefaults: '恢复默认值',
-    
+
     help: '帮助',
     faq: '常见问题',
     howToUse: '如何使用',
     contactSupport: '联系支持',
-    
+
     low: '低',
     medium: '中',
     high: '高',
     dark: '暗',
     bright: '亮',
-    
+
     close: '关闭',
     save: '保存',
     cancel: '取消',
     apply: '应用',
     proTip: '专业提示',
   },
-  
+
   ja: {
     appName: 'パスポート写真メーカー',
     appTagline: '数秒でプロの写真を ✨',
     supportButton: 'コーヒーをおごる',
-    
+
     step: 'ステップ',
     step1Title: 'アップロードと調整',
     step2Title: 'プレビューと印刷',
-    
+
     keyboardShortcuts: 'キーボードショートカット',
     proTips: 'プロのヒント',
     tip1: '顔がフレームの70-80%を占める',
@@ -715,7 +732,7 @@ export const translations: Record<Language, Translations> = {
     uploadToStart: '写真をアップロードして開始',
     supportedFormats: 'サポート：JPG、PNG、HEIC',
     nextStep: '次のステップ',
-    
+
     paperSize: '用紙サイズ',
     gridLayout: 'グリッドレイアウト',
     photosPerRow: '行あたりの写真数',
@@ -732,7 +749,7 @@ export const translations: Record<Language, Translations> = {
     sheetPreview: 'シートプレビュー',
     backToEditor: 'エディタに戻る',
     printSheet: 'シートを印刷',
-    
+
     original: 'オリジナル',
     white: '白',
     lightGray: 'ライトグレー',
@@ -741,7 +758,7 @@ export const translations: Record<Language, Translations> = {
     black: '黒',
     gray: 'グレー',
     blue: 'ブルー',
-    
+
     zoomIn: 'ズームイン',
     zoomOut: 'ズームアウト',
     rotateClockwise: '時計回りに回転',
@@ -752,55 +769,59 @@ export const translations: Record<Language, Translations> = {
     movePhotoRight: '写真を右に移動',
     resetAdjustments: 'すべての調整をリセット',
     showHelp: 'このヘルプを表示',
-    
+
     welcomeTitle: 'パスポート写真メーカーへようこそ！',
-    welcomeDescription: 'わずか2つの簡単なステップでプロのパスポート写真を作成します。使い方をご紹介します。',
+    welcomeDescription:
+      'わずか2つの簡単なステップでプロのパスポート写真を作成します。使い方をご紹介します。',
     step1OnboardTitle: 'ステップ1：アップロードと調整',
-    step1OnboardDescription: '写真をアップロードし、ツールを使用してズーム、回転、明るさの調整、完璧な位置調整を行います！',
+    step1OnboardDescription:
+      '写真をアップロードし、ツールを使用してズーム、回転、明るさの調整、完璧な位置調整を行います！',
     step2OnboardTitle: 'ステップ2：シートを印刷',
-    step2OnboardDescription: '異なる用紙サイズ、グリッドレイアウト、ボーダーで写真シートをカスタマイズします。その後、ダウンロードまたは印刷！',
+    step2OnboardDescription:
+      '異なる用紙サイズ、グリッドレイアウト、ボーダーで写真シートをカスタマイズします。その後、ダウンロードまたは印刷！',
     allSetTitle: '準備完了！',
-    allSetDescription: 'いつでも"?"を押してキーボードショートカットを確認できます。このツールが役立つ場合は、開発をサポートすることを検討してください。写真作成を楽しんでください！',
+    allSetDescription:
+      'いつでも"?"を押してキーボードショートカットを確認できます。このツールが役立つ場合は、開発をサポートすることを検討してください。写真作成を楽しんでください！',
     next: '次へ',
     back: '戻る',
     getStarted: '始める',
     skipTutorial: 'チュートリアルをスキップ',
-    
+
     settings: '設定',
     language: '言語',
     exportFormat: 'エクスポート形式',
     imageQuality: '画質',
     saveSettings: '設定を保存',
     restoreDefaults: 'デフォルトに戻す',
-    
+
     help: 'ヘルプ',
     faq: 'よくある質問',
     howToUse: '使い方',
     contactSupport: 'サポートに連絡',
-    
+
     low: '低',
     medium: '中',
     high: '高',
     dark: '暗い',
     bright: '明るい',
-    
+
     close: '閉じる',
     save: '保存',
     cancel: 'キャンセル',
     apply: '適用',
     proTip: 'プロのヒント',
   },
-  
+
   // Add more languages as needed (ar, hi, pt, ru)
   ar: {
     appName: 'صانع صور جواز السفر',
     appTagline: 'صور احترافية في ثوانٍ ✨',
     supportButton: 'اشترِ لي قهوة',
-    
+
     step: 'خطوة',
     step1Title: 'رفع وتعديل',
     step2Title: 'معاينة وطباعة',
-    
+
     keyboardShortcuts: 'اختصارات لوحة المفاتيح',
     proTips: 'نصائح احترافية',
     tip1: 'الوجه يملأ 70-80% من الإطار',
@@ -827,7 +848,7 @@ export const translations: Record<Language, Translations> = {
     uploadToStart: 'قم بتحميل صورة للبدء',
     supportedFormats: 'مدعوم: JPG، PNG، HEIC',
     nextStep: 'الخطوة التالية',
-    
+
     paperSize: 'حجم الورق',
     gridLayout: 'تخطيط الشبكة',
     photosPerRow: 'الصور لكل صف',
@@ -844,7 +865,7 @@ export const translations: Record<Language, Translations> = {
     sheetPreview: 'معاينة الورقة',
     backToEditor: 'العودة إلى المحرر',
     printSheet: 'طباعة الورقة',
-    
+
     original: 'أصلي',
     white: 'أبيض',
     lightGray: 'رمادي فاتح',
@@ -853,7 +874,7 @@ export const translations: Record<Language, Translations> = {
     black: 'أسود',
     gray: 'رمادي',
     blue: 'أزرق',
-    
+
     zoomIn: 'تكبير',
     zoomOut: 'تصغير',
     rotateClockwise: 'دوران مع عقارب الساعة',
@@ -864,54 +885,57 @@ export const translations: Record<Language, Translations> = {
     movePhotoRight: 'تحريك الصورة لليمين',
     resetAdjustments: 'إعادة تعيين جميع التعديلات',
     showHelp: 'إظهار هذه المساعدة',
-    
+
     welcomeTitle: 'مرحبًا بك في صانع صور جواز السفر!',
     welcomeDescription: 'أنشئ صور جواز سفر احترافية في خطوتين سهلتين فقط. دعني أريك كيف يعمل.',
     step1OnboardTitle: 'الخطوة 1: رفع وتعديل',
-    step1OnboardDescription: 'قم بتحميل صورتك واستخدم أدواتنا للتكبير والتدوير وضبط السطوع ووضع صورتك بشكل مثالي!',
+    step1OnboardDescription:
+      'قم بتحميل صورتك واستخدم أدواتنا للتكبير والتدوير وضبط السطوع ووضع صورتك بشكل مثالي!',
     step2OnboardTitle: 'الخطوة 2: طباعة ورقتك',
-    step2OnboardDescription: 'قم بتخصيص ورقة الصور الخاصة بك بأحجام ورق مختلفة وتخطيطات شبكة وحدود. ثم قم بالتحميل أو الطباعة!',
+    step2OnboardDescription:
+      'قم بتخصيص ورقة الصور الخاصة بك بأحجام ورق مختلفة وتخطيطات شبكة وحدود. ثم قم بالتحميل أو الطباعة!',
     allSetTitle: 'كل شيء جاهز!',
-    allSetDescription: 'اضغط على "?" في أي وقت لرؤية اختصارات لوحة المفاتيح. إذا وجدت هذه الأداة مفيدة، فكر في دعم التطوير. استمتع بصنع الصور!',
+    allSetDescription:
+      'اضغط على "?" في أي وقت لرؤية اختصارات لوحة المفاتيح. إذا وجدت هذه الأداة مفيدة، فكر في دعم التطوير. استمتع بصنع الصور!',
     next: 'التالي',
     back: 'رجوع',
     getStarted: 'ابدأ',
     skipTutorial: 'تخطي البرنامج التعليمي',
-    
+
     settings: 'الإعدادات',
     language: 'اللغة',
     exportFormat: 'تنسيق التصدير',
     imageQuality: 'جودة الصورة',
     saveSettings: 'حفظ الإعدادات',
     restoreDefaults: 'استعادة الافتراضيات',
-    
+
     help: 'مساعدة',
     faq: 'الأسئلة الشائعة',
     howToUse: 'كيفية الاستخدام',
     contactSupport: 'اتصل بالدعم',
-    
+
     low: 'منخفض',
     medium: 'متوسط',
     high: 'عالي',
     dark: 'داكن',
     bright: 'ساطع',
-    
+
     close: 'إغلاق',
     save: 'حفظ',
     cancel: 'إلغاء',
     apply: 'تطبيق',
     proTip: 'نصيحة',
   },
-  
+
   hi: {
     appName: 'पासपोर्ट फोटो निर्माता',
     appTagline: 'सेकंड में पेशेवर फोटो ✨',
     supportButton: 'मुझे कॉफी खरीदें',
-    
+
     step: 'चरण',
     step1Title: 'अपलोड और समायोजित करें',
     step2Title: 'पूर्वावलोकन और प्रिंट',
-    
+
     keyboardShortcuts: 'कीबोर्ड शॉर्टकट',
     proTips: 'प्रो टिप्स',
     tip1: 'चेहरा फ्रेम का 70-80% भरता है',
@@ -938,7 +962,7 @@ export const translations: Record<Language, Translations> = {
     uploadToStart: 'शुरू करने के लिए फोटो अपलोड करें',
     supportedFormats: 'समर्थित: JPG, PNG, HEIC',
     nextStep: 'अगला कदम',
-    
+
     paperSize: 'कागज का आकार',
     gridLayout: 'ग्रिड लेआउट',
     photosPerRow: 'प्रति पंक्ति फोटो',
@@ -955,7 +979,7 @@ export const translations: Record<Language, Translations> = {
     sheetPreview: 'शीट पूर्वावलोकन',
     backToEditor: 'संपादक पर वापस जाएं',
     printSheet: 'शीट प्रिंट करें',
-    
+
     original: 'मूल',
     white: 'सफेद',
     lightGray: 'हल्का ग्रे',
@@ -964,7 +988,7 @@ export const translations: Record<Language, Translations> = {
     black: 'काला',
     gray: 'ग्रे',
     blue: 'नीला',
-    
+
     zoomIn: 'ज़ूम इन',
     zoomOut: 'ज़ूम आउट',
     rotateClockwise: 'घड़ी की दिशा में घुमाएं',
@@ -975,54 +999,58 @@ export const translations: Record<Language, Translations> = {
     movePhotoRight: 'फोटो दाएं ले जाएं',
     resetAdjustments: 'सभी समायोजन रीसेट करें',
     showHelp: 'यह सहायता दिखाएं',
-    
+
     welcomeTitle: 'पासपोर्ट फोटो निर्माता में आपका स्वागत है!',
-    welcomeDescription: 'केवल 2 आसान चरणों में पेशेवर पासपोर्ट फोटो बनाएं। मुझे आपको दिखाने दें कि यह कैसे काम करता है।',
+    welcomeDescription:
+      'केवल 2 आसान चरणों में पेशेवर पासपोर्ट फोटो बनाएं। मुझे आपको दिखाने दें कि यह कैसे काम करता है।',
     step1OnboardTitle: 'चरण 1: अपलोड और समायोजित करें',
-    step1OnboardDescription: 'अपनी फोटो अपलोड करें और ज़ूम, घुमाने, चमक समायोजित करने और अपनी फोटो को पूर्ण रूप से स्थिति देने के लिए हमारे उपकरणों का उपयोग करें!',
+    step1OnboardDescription:
+      'अपनी फोटो अपलोड करें और ज़ूम, घुमाने, चमक समायोजित करने और अपनी फोटो को पूर्ण रूप से स्थिति देने के लिए हमारे उपकरणों का उपयोग करें!',
     step2OnboardTitle: 'चरण 2: अपनी शीट प्रिंट करें',
-    step2OnboardDescription: 'विभिन्न कागज आकार, ग्रिड लेआउट और बॉर्डर के साथ अपनी फोटो शीट को अनुकूलित करें। फिर डाउनलोड या प्रिंट करें!',
+    step2OnboardDescription:
+      'विभिन्न कागज आकार, ग्रिड लेआउट और बॉर्डर के साथ अपनी फोटो शीट को अनुकूलित करें। फिर डाउनलोड या प्रिंट करें!',
     allSetTitle: 'सब तैयार है!',
-    allSetDescription: 'कीबोर्ड शॉर्टकट देखने के लिए किसी भी समय "?" दबाएं। यदि आपको यह उपकरण उपयोगी लगता है, तो वि���ास का समर्थन करने पर विचार करें। फोटो बनाने का आनंद लें!',
+    allSetDescription:
+      'कीबोर्ड शॉर्टकट देखने के लिए किसी भी समय "?" दबाएं। यदि आपको यह उपकरण उपयोगी लगता है, तो वि���ास का समर्थन करने पर विचार करें। फोटो बनाने का आनंद लें!',
     next: 'अगला',
     back: 'पीछे',
     getStarted: 'शुरू करें',
     skipTutorial: 'ट्यूटोरियल छोड़ें',
-    
+
     settings: 'सेटिंग्स',
     language: 'भाषा',
     exportFormat: 'निर्यात प्रारूप',
     imageQuality: 'छवि गुणवत्ता',
     saveSettings: 'सेटिंग्स सहेजें',
     restoreDefaults: 'डिफ़ॉल्ट पुनर्स्थापित करें',
-    
+
     help: 'सहायता',
     faq: 'अक्सर पूछे जाने वाले प्रश्न',
     howToUse: 'उपयोग कैसे करें',
     contactSupport: 'सहायता से संपर्क करें',
-    
+
     low: 'कम',
     medium: 'मध्यम',
     high: 'उच्च',
     dark: 'अंधेरा',
     bright: 'उज्ज्वल',
-    
+
     close: 'बंद करें',
     save: 'सहेजें',
     cancel: 'रद्द करें',
     apply: 'लागू करें',
     proTip: 'प्रो टिप',
   },
-  
+
   pt: {
     appName: 'Criador de Fotos de Passaporte',
     appTagline: 'Fotos profissionais em segundos ✨',
     supportButton: 'Me pague um café',
-    
+
     step: 'Passo',
     step1Title: 'Enviar e Ajustar',
     step2Title: 'Visualizar e Imprimir',
-    
+
     keyboardShortcuts: 'Atalhos de Teclado',
     proTips: 'Dicas Profissionais',
     tip1: 'Rosto preenche 70-80% do quadro',
@@ -1051,7 +1079,7 @@ export const translations: Record<Language, Translations> = {
     uploadToStart: 'Envie uma foto para começar',
     supportedFormats: 'Suportado: JPG, PNG, HEIC',
     nextStep: 'Próximo Passo',
-    
+
     paperSize: 'Tamanho do Papel',
     gridLayout: 'Layout de Grade',
     photosPerRow: 'Fotos por linha',
@@ -1068,7 +1096,7 @@ export const translations: Record<Language, Translations> = {
     sheetPreview: 'Visualização da Folha',
     backToEditor: 'Voltar ao Editor',
     printSheet: 'Imprimir Folha',
-    
+
     original: 'Original',
     white: 'Branco',
     lightGray: 'Cinza Claro',
@@ -1086,54 +1114,58 @@ export const translations: Record<Language, Translations> = {
     movePhotoRight: 'Mover foto para direita',
     resetAdjustments: 'Redefinir todos os ajustes',
     showHelp: 'Mostrar esta ajuda',
-    
+
     welcomeTitle: 'Bem-vindo ao Criador de Fotos de Passaporte!',
-    welcomeDescription: 'Crie fotos profissionais de passaporte em apenas 2 passos fáceis. Deixe-me mostrar como funciona.',
+    welcomeDescription:
+      'Crie fotos profissionais de passaporte em apenas 2 passos fáceis. Deixe-me mostrar como funciona.',
     step1OnboardTitle: 'Passo 1: Enviar e Ajustar',
-    step1OnboardDescription: 'Envie sua foto e use nossas ferramentas para ampliar, girar, ajustar o brilho e posicionar sua foto perfeitamente!',
+    step1OnboardDescription:
+      'Envie sua foto e use nossas ferramentas para ampliar, girar, ajustar o brilho e posicionar sua foto perfeitamente!',
     step2OnboardTitle: 'Passo 2: Imprimir Sua Folha',
-    step2OnboardDescription: 'Personalize sua folha de fotos com diferentes tamanhos de papel, layouts de grade e bordas. Depois baixe ou imprima!',
+    step2OnboardDescription:
+      'Personalize sua folha de fotos com diferentes tamanhos de papel, layouts de grade e bordas. Depois baixe ou imprima!',
     allSetTitle: 'Tudo Pronto!',
-    allSetDescription: 'Pressione "?" a qualquer momento para ver os atalhos de teclado. Se você achar esta ferramenta útil, considere apoiar o desenvolvimento. Boa criação de fotos!',
+    allSetDescription:
+      'Pressione "?" a qualquer momento para ver os atalhos de teclado. Se você achar esta ferramenta útil, considere apoiar o desenvolvimento. Boa criação de fotos!',
     next: 'Próximo',
     back: 'Voltar',
     getStarted: 'Começar',
     skipTutorial: 'Pular tutorial',
-    
+
     settings: 'Configurações',
     language: 'Idioma',
     exportFormat: 'Formato de Exportação',
     imageQuality: 'Qualidade da Imagem',
     saveSettings: 'Salvar Configurações',
     restoreDefaults: 'Restaurar Padrões',
-    
+
     help: 'Ajuda',
     faq: 'FAQ',
     howToUse: 'Como Usar',
     contactSupport: 'Contatar Suporte',
-    
+
     low: 'Baixa',
     medium: 'Média',
     high: 'Alta',
     dark: 'Escuro',
     bright: 'Brilhante',
-    
+
     close: 'Fechar',
     save: 'Salvar',
     cancel: 'Cancelar',
     apply: 'Aplicar',
     proTip: 'Dica',
   },
-  
+
   ru: {
     appName: 'Создатель Фото на Паспорт',
     appTagline: 'Профессиональные фото за секунды ✨',
     supportButton: 'Купите мне кофе',
-    
+
     step: 'Шаг',
     step1Title: 'Загрузить и Настроить',
     step2Title: 'Просмотр и Печать',
-    
+
     keyboardShortcuts: 'Горячие Клавиши',
     proTips: 'Профессиональные Советы',
     tip1: 'Лицо занимает 70-80% кадра',
@@ -1160,7 +1192,7 @@ export const translations: Record<Language, Translations> = {
     uploadToStart: 'Загрузите фото для начала',
     supportedFormats: 'Поддерживается: JPG, PNG, HEIC',
     nextStep: 'Следующий Шаг',
-    
+
     paperSize: 'Размер Бумаги',
     gridLayout: 'Макет Сетки',
     photosPerRow: 'Фото в ряд',
@@ -1177,7 +1209,7 @@ export const translations: Record<Language, Translations> = {
     sheetPreview: 'Предпросмотр Листа',
     backToEditor: 'Вернуться к Редактору',
     printSheet: 'Печать Листа',
-    
+
     original: 'Оригинал',
     white: 'Белый',
     lightGray: 'Светло-серый',
@@ -1186,7 +1218,7 @@ export const translations: Record<Language, Translations> = {
     black: 'Черный',
     gray: 'Серый',
     blue: 'Синий',
-    
+
     zoomIn: 'Увеличить',
     zoomOut: 'Уменьшить',
     rotateClockwise: 'Повернуть по часовой стрелке',
@@ -1197,38 +1229,42 @@ export const translations: Record<Language, Translations> = {
     movePhotoRight: 'Переместить фото вправо',
     resetAdjustments: 'Сбросить все настройки',
     showHelp: 'Показать эту помощь',
-    
+
     welcomeTitle: 'Добро пожаловать в Создатель Фото на Паспорт!',
-    welcomeDescription: 'Создавайте профессиональные фото на паспорт всего за 2 простых шага. Позвольте мне показать, как это работает.',
+    welcomeDescription:
+      'Создавайте профессиональные фото на паспорт всего за 2 простых шага. Позвольте мне показать, как это работает.',
     step1OnboardTitle: 'Шаг 1: Загрузить и Настроить',
-    step1OnboardDescription: 'Загрузите свое фото и используйте наши инструменты для масштабирования, поворота, настройки яркости и идеального позиционирования фото!',
+    step1OnboardDescription:
+      'Загрузите свое фото и используйте наши инструменты для масштабирования, поворота, настройки яркости и идеального позиционирования фото!',
     step2OnboardTitle: 'Шаг 2: Печать Листа',
-    step2OnboardDescription: 'Настройте лист с фотографиями с различными размерами бумаги, макетами сетки и границами. Затем скачайте или распечатайте!',
+    step2OnboardDescription:
+      'Настройте лист с фотографиями с различными размерами бумаги, макетами сетки и границами. Затем скачайте или распечатайте!',
     allSetTitle: 'Все Готово!',
-    allSetDescription: 'Нажмите "?" в любое время, чтобы увидеть горячие клавиши. Если вы находите этот инструмент полезным, рассмотрите возможность поддержки разработки. Приятного создания фото!',
+    allSetDescription:
+      'Нажмите "?" в любое время, чтобы увидеть горячие клавиши. Если вы находите этот инструмент полезным, рассмотрите возможность поддержки разработки. Приятного создания фото!',
     next: 'Далее',
     back: 'Назад',
     getStarted: 'Нача��ь',
     skipTutorial: 'Пропустить обучение',
-    
+
     settings: 'Настройки',
     language: 'Язык',
     exportFormat: 'Формат Экспорта',
     imageQuality: 'Качество Изображения',
     saveSettings: 'Сохранить Настройки',
     restoreDefaults: 'Восстановить По Умолчанию',
-    
+
     help: 'Помощь',
     faq: 'FAQ',
     howToUse: 'Как Использовать',
     contactSupport: 'Связаться с Поддержкой',
-    
+
     low: 'Низкое',
     medium: 'Среднее',
     high: 'Высокое',
     dark: 'Темное',
     bright: 'Яркое',
-    
+
     close: 'Закрыть',
     save: 'Сохранить',
     cancel: 'Отмена',

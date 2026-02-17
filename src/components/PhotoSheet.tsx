@@ -56,7 +56,8 @@ export function PhotoSheet({
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Get photo dimensions from selected photo size
-  const selectedPhotoSize = PHOTO_SIZE_OPTIONS.find(ps => ps.value === passportSize) || PHOTO_SIZE_OPTIONS[0];
+  const selectedPhotoSize =
+    PHOTO_SIZE_OPTIONS.find((ps) => ps.value === passportSize) || PHOTO_SIZE_OPTIONS[0];
   const photoWidth = selectedPhotoSize.width;
   const photoHeight = selectedPhotoSize.height;
 
@@ -86,7 +87,8 @@ export function PhotoSheet({
   ];
 
   const currentLayout = LAYOUTS[paperSize];
-  const currentPaperSizeOption = PAPER_SIZE_OPTIONS.find(s => s.value === paperSize) || PAPER_SIZE_OPTIONS[0];
+  const currentPaperSizeOption =
+    PAPER_SIZE_OPTIONS.find((s) => s.value === paperSize) || PAPER_SIZE_OPTIONS[0];
 
   // Render preview canvas with debouncing to prevent continuous flickering
   useEffect(() => {
@@ -130,11 +132,14 @@ export function PhotoSheet({
             const paperSizeArea = currentLayout.width * currentLayout.height;
 
             // Adjust scale based on paper size
-            if (paperSizeArea >= 80) { // 8x10 and larger
+            if (paperSizeArea >= 80) {
+              // 8x10 and larger
               previewScale = 0.35;
-            } else if (paperSizeArea >= 48) { // 6x8 and larger
+            } else if (paperSizeArea >= 48) {
+              // 6x8 and larger
               previewScale = 0.4;
-            } else if (paperSizeArea >= 35) { // 5x7 and larger
+            } else if (paperSizeArea >= 35) {
+              // 5x7 and larger
               previewScale = 0.45;
             }
 
@@ -183,7 +188,26 @@ export function PhotoSheet({
         cancelAnimationFrame(rafId);
       }
     };
-  }, [uploadedImage, paperSize, quality, gapEnabled, borderEnabled, photoWidth, photoHeight, zoom, rotation, panX, panY, brightness, contrast, backgroundColor, borderWidth, borderColor, optimalLayout, currentLayout]);
+  }, [
+    uploadedImage,
+    paperSize,
+    quality,
+    gapEnabled,
+    borderEnabled,
+    photoWidth,
+    photoHeight,
+    zoom,
+    rotation,
+    panX,
+    panY,
+    brightness,
+    contrast,
+    backgroundColor,
+    borderWidth,
+    borderColor,
+    optimalLayout,
+    currentLayout,
+  ]);
 
   const handleDownloadSheet = () => {
     if (!uploadedImage) return;
@@ -221,7 +245,10 @@ export function PhotoSheet({
       } catch (error) {
         console.error('Error downloading sheet:', error);
         alert('Failed to download photo sheet. Please try again.');
-        Analytics.errorOccurred('export_error', error instanceof Error ? error.message : 'Unknown error');
+        Analytics.errorOccurred(
+          'export_error',
+          error instanceof Error ? error.message : 'Unknown error'
+        );
       }
     };
     img.src = uploadedImage;
@@ -246,17 +273,25 @@ export function PhotoSheet({
               </SelectTrigger>
               <SelectContent className="bg-gray-900/95 backdrop-blur-xl border-white/20">
                 {intelligentPaperSizes.map((size) => (
-                  <SelectItem key={size.value} value={size.value} className="text-white hover:bg-white/10">
+                  <SelectItem
+                    key={size.value}
+                    value={size.value}
+                    className="text-white hover:bg-white/10"
+                  >
                     <div className="flex items-center gap-3">
                       <span className="text-xl">{size.icon}</span>
                       <div>
                         <div className="flex items-center gap-2">
                           {size.label}
                           {size.recommendationLevel === 'best' && (
-                            <Badge className="ml-1 bg-emerald-500/90 text-white text-[10px]">Best</Badge>
+                            <Badge className="ml-1 bg-emerald-500/90 text-white text-[10px]">
+                              Best
+                            </Badge>
                           )}
                           {size.recommendationLevel === 'good' && (
-                            <Badge className="ml-1 bg-blue-500/90 text-white text-[10px]">Good</Badge>
+                            <Badge className="ml-1 bg-blue-500/90 text-white text-[10px]">
+                              Good
+                            </Badge>
                           )}
                         </div>
                         <div className="text-xs text-white/60">{size.description}</div>
@@ -282,7 +317,10 @@ export function PhotoSheet({
             <div className="space-y-4">
               <div>
                 <label className="text-sm text-white/80 mb-2 block">Quality</label>
-                <Select value={quality} onValueChange={(val) => setQuality(val as 'high' | 'medium')}>
+                <Select
+                  value={quality}
+                  onValueChange={(val) => setQuality(val as 'high' | 'medium')}
+                >
                   <SelectTrigger className="w-full bg-white/10 border-white/30 text-white rounded-xl text-left">
                     <SelectValue />
                   </SelectTrigger>
@@ -360,7 +398,9 @@ export function PhotoSheet({
                             : 'border-white/20 bg-white/5 hover:bg-white/10'
                         }`}
                       >
-                        <div className={`w-full h-8 rounded-lg bg-gradient-to-br ${color.gradient} mb-2 shadow-lg`} />
+                        <div
+                          className={`w-full h-8 rounded-lg bg-gradient-to-br ${color.gradient} mb-2 shadow-lg`}
+                        />
                         <span className="text-xs text-white/90 font-medium">{color.label}</span>
                       </motion.button>
                     ))}
@@ -391,7 +431,9 @@ export function PhotoSheet({
             </div>
             <div className="flex justify-between text-white/90">
               <span className="text-sm">Layout:</span>
-              <span className="font-semibold">{optimalLayout.cols}×{optimalLayout.rows}</span>
+              <span className="font-semibold">
+                {optimalLayout.cols}×{optimalLayout.rows}
+              </span>
             </div>
             <div className="flex justify-between text-white/90">
               <span className="text-sm">Photo Size:</span>
@@ -399,7 +441,9 @@ export function PhotoSheet({
             </div>
             <div className="flex justify-between text-white/90">
               <span className="text-sm">Paper:</span>
-              <span className="font-semibold">{currentLayout.width}×{currentLayout.height}"</span>
+              <span className="font-semibold">
+                {currentLayout.width}×{currentLayout.height}"
+              </span>
             </div>
             <div className="flex justify-between text-white/90">
               <span className="text-sm">Quality:</span>
@@ -409,10 +453,7 @@ export function PhotoSheet({
         </motion.div>
 
         {/* Download Button */}
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           <Button
             onClick={handleDownloadSheet}
             className="w-full h-14 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-2xl shadow-2xl shadow-green-500/50"
@@ -442,7 +483,8 @@ export function PhotoSheet({
                       {currentPaperSizeOption.label}
                     </div>
                     <div className="text-white/70 text-xs">
-                      {currentLayout.width}×{currentLayout.height}\" • {optimalLayout.photos} photos • {quality === 'high' ? '300' : '200'} DPI
+                      {currentLayout.width}×{currentLayout.height}\" • {optimalLayout.photos} photos
+                      • {quality === 'high' ? '300' : '200'} DPI
                     </div>
                   </div>
                 </div>
@@ -464,7 +506,7 @@ export function PhotoSheet({
                     ref={canvasRef}
                     className="w-full h-auto block"
                     style={{
-                      imageRendering: 'high-quality',
+                      imageRendering: 'auto',
                       maxWidth: '100%',
                       maxHeight: '800px',
                     }}
@@ -475,10 +517,7 @@ export function PhotoSheet({
 
             {/* Action Buttons */}
             <div className="flex justify-between items-center mt-8 gap-4">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   onClick={onBack}
                   size="lg"
@@ -488,10 +527,7 @@ export function PhotoSheet({
                   Back to Editor
                 </Button>
               </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   onClick={handleDownloadSheet}
                   size="lg"

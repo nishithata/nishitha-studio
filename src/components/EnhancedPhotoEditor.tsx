@@ -1,5 +1,28 @@
 import { useRef, useState, useEffect, lazy, Suspense } from 'react';
-import { Upload, ZoomIn, ZoomOut, RotateCw, Palette, Download, Lightbulb, ImagePlus, Sun, Contrast, RefreshCw, Keyboard, Move, Sparkles, Grid3x3, Eye, EyeOff, Wand2, QrCode, History as HistoryIcon, Camera as CameraIcon, SplitSquareVertical } from 'lucide-react';
+import {
+  Upload,
+  ZoomIn,
+  ZoomOut,
+  RotateCw,
+  Palette,
+  Download,
+  Lightbulb,
+  ImagePlus,
+  Sun,
+  Contrast,
+  RefreshCw,
+  Keyboard,
+  Move,
+  Sparkles,
+  Grid3x3,
+  Eye,
+  EyeOff,
+  Wand2,
+  QrCode,
+  History as HistoryIcon,
+  Camera as CameraIcon,
+  SplitSquareVertical,
+} from 'lucide-react';
 import { Button } from './ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Slider } from './ui/slider';
@@ -15,11 +38,21 @@ import { PHOTO_SIZE_OPTIONS } from '../utils/layoutConfig';
 import Analytics from '../utils/analytics';
 
 // Lazy load heavy components for better performance
-const QRCodeGenerator = lazy(() => import('./QRCodeGenerator').then(m => ({ default: m.QRCodeGenerator })));
-const HistoryPanel = lazy(() => import('./HistoryPanel').then(m => ({ default: m.HistoryPanel })));
-const PresetsPanel = lazy(() => import('./PresetsPanel').then(m => ({ default: m.PresetsPanel })));
-const BeforeAfterComparison = lazy(() => import('./BeforeAfterComparison').then(m => ({ default: m.BeforeAfterComparison })));
-const CameraCapture = lazy(() => import('./CameraCapture').then(m => ({ default: m.CameraCapture })));
+const QRCodeGenerator = lazy(() =>
+  import('./QRCodeGenerator').then((m) => ({ default: m.QRCodeGenerator }))
+);
+const HistoryPanel = lazy(() =>
+  import('./HistoryPanel').then((m) => ({ default: m.HistoryPanel }))
+);
+const PresetsPanel = lazy(() =>
+  import('./PresetsPanel').then((m) => ({ default: m.PresetsPanel }))
+);
+const BeforeAfterComparison = lazy(() =>
+  import('./BeforeAfterComparison').then((m) => ({ default: m.BeforeAfterComparison }))
+);
+const CameraCapture = lazy(() =>
+  import('./CameraCapture').then((m) => ({ default: m.CameraCapture }))
+);
 
 // Dynamic import for heic2any (only loaded when needed)
 let heic2any: any = null;
@@ -103,7 +136,9 @@ export function EnhancedPhotoEditor({
     const handleKeyPress = (e: KeyboardEvent) => {
       if (!uploadedImage) return;
 
-      if (['+', '-', '=', '[', ']', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+      if (
+        ['+', '-', '=', '[', ']', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)
+      ) {
         e.preventDefault();
       }
 
@@ -234,7 +269,11 @@ export function EnhancedPhotoEditor({
     const files = e.dataTransfer.files;
     if (files.length > 0) {
       const file = files[0];
-      if (file.type.startsWith('image/') || file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
+      if (
+        file.type.startsWith('image/') ||
+        file.name.toLowerCase().endsWith('.heic') ||
+        file.name.toLowerCase().endsWith('.heif')
+      ) {
         await processFile(file);
       } else {
         alert('Please drop an image file (JPG, PNG, HEIC)');
@@ -248,10 +287,11 @@ export function EnhancedPhotoEditor({
 
     try {
       // Check if file is HEIC/HEIF format
-      const isHEIC = file.type === 'image/heic' ||
-                     file.type === 'image/heif' ||
-                     file.name.toLowerCase().endsWith('.heic') ||
-                     file.name.toLowerCase().endsWith('.heif');
+      const isHEIC =
+        file.type === 'image/heic' ||
+        file.type === 'image/heif' ||
+        file.name.toLowerCase().endsWith('.heic') ||
+        file.name.toLowerCase().endsWith('.heif');
 
       let processedFile: Blob = file;
 
@@ -263,7 +303,7 @@ export function EnhancedPhotoEditor({
         const convertedBlob = await heic2anyModule({
           blob: file,
           toType: 'image/jpeg',
-          quality: 0.95
+          quality: 0.95,
         });
 
         // heic2any might return an array of blobs, handle both cases
@@ -290,7 +330,10 @@ export function EnhancedPhotoEditor({
       console.error('Failed to process image:', error);
       alert('Failed to process image. Please try a different file.');
       setIsUploading(false);
-      Analytics.errorOccurred('image_processing_error', error instanceof Error ? error.message : 'Unknown error');
+      Analytics.errorOccurred(
+        'image_processing_error',
+        error instanceof Error ? error.message : 'Unknown error'
+      );
     }
   };
 
@@ -321,7 +364,8 @@ export function EnhancedPhotoEditor({
     if (!uploadedImage) return;
 
     // Get selected photo size dimensions
-    const selectedPhotoSize = PHOTO_SIZE_OPTIONS.find(ps => ps.value === passportSize) || PHOTO_SIZE_OPTIONS[0];
+    const selectedPhotoSize =
+      PHOTO_SIZE_OPTIONS.find((ps) => ps.value === passportSize) || PHOTO_SIZE_OPTIONS[0];
     const photoWidthInches = selectedPhotoSize.width;
     const photoHeightInches = selectedPhotoSize.height;
 
@@ -348,7 +392,7 @@ export function EnhancedPhotoEditor({
       lightgray: '#f3f4f6',
       lightblue: '#dbeafe',
       cream: '#fef3c7',
-      original: 'transparent'
+      original: 'transparent',
     };
     ctx.fillStyle = bgColors[backgroundColor] || '#ffffff';
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
@@ -387,8 +431,8 @@ export function EnhancedPhotoEditor({
       // Scale panX and panY from preview coordinates to download canvas coordinates
       ctx.drawImage(
         img,
-        -drawWidth / 2 + (panX * scaleFactorX),
-        -drawHeight / 2 + (panY * scaleFactorY),
+        -drawWidth / 2 + panX * scaleFactorX,
+        -drawHeight / 2 + panY * scaleFactorY,
         drawWidth,
         drawHeight
       );
@@ -396,16 +440,20 @@ export function EnhancedPhotoEditor({
       ctx.restore();
 
       // Download the canvas
-      canvas.toBlob((blob) => {
-        if (!blob) return;
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
-        link.download = `edited-photo-${selectedPhotoSize.value}-${timestamp}.png`;
-        link.href = url;
-        link.click();
-        setTimeout(() => URL.revokeObjectURL(url), 100);
-      }, 'image/png', 0.95);
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) return;
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+          link.download = `edited-photo-${selectedPhotoSize.value}-${timestamp}.png`;
+          link.href = url;
+          link.click();
+          setTimeout(() => URL.revokeObjectURL(url), 100);
+        },
+        'image/png',
+        0.95
+      );
     };
     img.src = uploadedImage;
   };
@@ -421,16 +469,32 @@ export function EnhancedPhotoEditor({
   };
 
   const backgroundColors = [
-    { value: 'original', label: t.original, color: 'transparent', gradient: 'from-gray-400 to-gray-600' },
+    {
+      value: 'original',
+      label: t.original,
+      color: 'transparent',
+      gradient: 'from-gray-400 to-gray-600',
+    },
     { value: 'white', label: t.white, color: '#ffffff', gradient: 'from-gray-100 to-gray-200' },
-    { value: 'lightgray', label: t.lightGray, color: '#f3f4f6', gradient: 'from-gray-200 to-gray-300' },
-    { value: 'lightblue', label: t.lightBlue, color: '#dbeafe', gradient: 'from-blue-200 to-blue-300' },
+    {
+      value: 'lightgray',
+      label: t.lightGray,
+      color: '#f3f4f6',
+      gradient: 'from-gray-200 to-gray-300',
+    },
+    {
+      value: 'lightblue',
+      label: t.lightBlue,
+      color: '#dbeafe',
+      gradient: 'from-blue-200 to-blue-300',
+    },
     { value: 'cream', label: t.cream, color: '#fef3c7', gradient: 'from-amber-100 to-amber-200' },
   ];
 
   // Calculate preview dimensions based on selected passport size
   const getPreviewDimensions = () => {
-    const selectedPhotoSize = PHOTO_SIZE_OPTIONS.find(ps => ps.value === passportSize) || PHOTO_SIZE_OPTIONS[0];
+    const selectedPhotoSize =
+      PHOTO_SIZE_OPTIONS.find((ps) => ps.value === passportSize) || PHOTO_SIZE_OPTIONS[0];
     const aspectRatio = selectedPhotoSize.width / selectedPhotoSize.height;
 
     // Base height for preview
@@ -542,14 +606,14 @@ export function EnhancedPhotoEditor({
               // Head height requirements
               // US: 50-69% of image height
               // India: 1" to 1 3/8" on 2" photo = 50% to 68.75%
-              const minHeadPercent = 0.50;
+              const minHeadPercent = 0.5;
               const maxHeadPercent = isIndianPassport ? 0.6875 : 0.69;
 
               const minHeadHeight = faceOvalParams.height * minHeadPercent;
               const maxHeadHeight = faceOvalParams.height * maxHeadPercent;
 
               // Center the range zone vertically
-              const rangeCenter = faceOvalParams.height * 0.50;
+              const rangeCenter = faceOvalParams.height * 0.5;
               const minY = rangeCenter - maxHeadHeight / 2;
               const maxY = rangeCenter + maxHeadHeight / 2;
               const minHeightY = rangeCenter - minHeadHeight / 2;
@@ -650,7 +714,6 @@ export function EnhancedPhotoEditor({
                 </>
               );
             })()}
-
           </svg>
         </>
       ),
@@ -672,7 +735,9 @@ export function EnhancedPhotoEditor({
             >
               <Keyboard className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">{t.keyboardShortcuts}</span>
-              <Badge variant="secondary" className="ml-2 bg-white/20 text-white border-white/30">?</Badge>
+              <Badge variant="secondary" className="ml-2 bg-white/20 text-white border-white/30">
+                ?
+              </Badge>
             </Button>
           </motion.div>
 
@@ -771,7 +836,13 @@ export function EnhancedPhotoEditor({
               <Button
                 onClick={handleUploadClick}
                 disabled={isUploading}
-                aria-label={isUploading ? "Processing photo" : (uploadedImage ? "Change uploaded photo" : "Choose photo to upload")}
+                aria-label={
+                  isUploading
+                    ? 'Processing photo'
+                    : uploadedImage
+                      ? 'Change uploaded photo'
+                      : 'Choose photo to upload'
+                }
                 className={`w-full h-32 border-2 border-dashed ${
                   isDragOver
                     ? 'border-indigo-400 bg-indigo-500/20 scale-105'
@@ -781,14 +852,16 @@ export function EnhancedPhotoEditor({
                 <div className="flex flex-col items-center gap-3">
                   <motion.div
                     animate={isUploading ? { rotate: 360 } : {}}
-                    transition={isUploading ? { duration: 1, repeat: Infinity, ease: "linear" } : {}}
+                    transition={
+                      isUploading ? { duration: 1, repeat: Infinity, ease: 'linear' } : {}
+                    }
                     whileHover={!isUploading ? { scale: 1.1, rotate: 5 } : {}}
                     className="w-14 h-14 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-2xl flex items-center justify-center shadow-xl"
                   >
                     {isUploading ? (
                       <motion.div
                         animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                         className="w-7 h-7 border-3 border-white border-t-transparent rounded-full"
                       />
                     ) : (
@@ -797,7 +870,11 @@ export function EnhancedPhotoEditor({
                   </motion.div>
                   <div>
                     <span className="text-white font-semibold block">
-                      {isUploading ? 'Processing...' : (uploadedImage ? t.changePhoto : t.choosePhoto)}
+                      {isUploading
+                        ? 'Processing...'
+                        : uploadedImage
+                          ? t.changePhoto
+                          : t.choosePhoto}
                     </span>
                     <span className="text-xs text-white/60">
                       {isUploading ? 'Please wait' : t.fileSize}
@@ -806,7 +883,7 @@ export function EnhancedPhotoEditor({
                 </div>
               </Button>
             </motion.div>
-            
+
             {/* Demo Photo Button */}
             {!uploadedImage && (
               <div className="mt-4 relative">
@@ -844,20 +921,24 @@ export function EnhancedPhotoEditor({
         {/* Passport Size */}
         <GlassCard delay={0.15}>
           <div className="p-6">
-            <h2 className="text-white mb-4 flex items-center gap-2">
-              📏 {t.passportSize}
-            </h2>
+            <h2 className="text-white mb-4 flex items-center gap-2">📏 {t.passportSize}</h2>
             <Select value={passportSize} onValueChange={setPassportSize}>
               <SelectTrigger className="w-full h-14 bg-white/10 border-white/30 text-white rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all text-left">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-gray-900/95 backdrop-blur-xl border-white/20">
                 {PHOTO_SIZE_OPTIONS.map((size) => (
-                  <SelectItem key={size.value} value={size.value} className="text-white hover:bg-white/10">
+                  <SelectItem
+                    key={size.value}
+                    value={size.value}
+                    className="text-white hover:bg-white/10"
+                  >
                     <div className="flex items-center gap-3">
                       <div className="flex flex-col">
                         <span>{size.label}</span>
-                        <span className="text-xs text-white/60">{size.description} • {size.pixelsAt300DPI}</span>
+                        <span className="text-xs text-white/60">
+                          {size.description} • {size.pixelsAt300DPI}
+                        </span>
                       </div>
                     </div>
                   </SelectItem>
@@ -889,7 +970,9 @@ export function EnhancedPhotoEditor({
                       : 'border-white/20 bg-white/5 hover:bg-white/10'
                   }`}
                 >
-                  <div className={`w-full h-12 rounded-lg bg-gradient-to-br ${bg.gradient} mb-2 shadow-lg`} />
+                  <div
+                    className={`w-full h-12 rounded-lg bg-gradient-to-br ${bg.gradient} mb-2 shadow-lg`}
+                  />
                   <span className="text-xs text-white/90 font-medium">{bg.label}</span>
                 </motion.button>
               ))}
@@ -958,11 +1041,12 @@ export function EnhancedPhotoEditor({
               <h2 className="text-white">{t.position}</h2>
               <Badge className="ml-auto bg-white/20 text-white border-white/30 text-xs">←↑↓→</Badge>
             </div>
-            <p className="text-sm text-white/70 mb-4">
-              {t.dragToReposition}
-            </p>
+            <p className="text-sm text-white/70 mb-4">{t.dragToReposition}</p>
             <Button
-              onClick={() => { setPanX(0); setPanY(0); }}
+              onClick={() => {
+                setPanX(0);
+                setPanY(0);
+              }}
               className="w-full bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl"
             >
               {t.centerPhoto}
@@ -1255,22 +1339,25 @@ export function EnhancedPhotoEditor({
                 </Badge>
               )}
             </div>
-            
+
             {/* Preview Canvas */}
             <div className="flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 sm:p-12 min-h-[500px] sm:min-h-[600px] relative overflow-hidden border-2 border-white/30">
               {/* Dark checkerboard pattern background */}
-              <div className="absolute inset-0" style={{
-                backgroundImage: `
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `
                   linear-gradient(45deg, #1f2937 25%, transparent 25%),
                   linear-gradient(-45deg, #1f2937 25%, transparent 25%),
                   linear-gradient(45deg, transparent 75%, #1f2937 75%),
                   linear-gradient(-45deg, transparent 75%, #1f2937 75%)
                 `,
-                backgroundSize: '30px 30px',
-                backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0px',
-                opacity: 0.3
-              }} />
-              
+                  backgroundSize: '30px 30px',
+                  backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0px',
+                  opacity: 0.3,
+                }}
+              />
+
               {uploadedImage ? (
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
@@ -1284,8 +1371,11 @@ export function EnhancedPhotoEditor({
                     style={{
                       width: `${previewDimensions.width}px`,
                       height: `${previewDimensions.height}px`,
-                      backgroundColor: backgroundColors.find(bg => bg.value === backgroundColor)?.color || 'white',
-                      boxShadow: '0 0 30px rgba(99, 102, 241, 0.4), 0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+                      backgroundColor:
+                        backgroundColors.find((bg) => bg.value === backgroundColor)?.color ||
+                        'white',
+                      boxShadow:
+                        '0 0 30px rgba(99, 102, 241, 0.4), 0 20px 25px -5px rgba(0, 0, 0, 0.1)',
                     }}
                     onMouseDown={handleMouseDown}
                     onMouseMove={handleMouseMove}
@@ -1309,7 +1399,7 @@ export function EnhancedPhotoEditor({
                         draggable={false}
                       />
                     </div>
-                    
+
                     {/* Grid Overlay */}
                     <div className="absolute inset-0 pointer-events-none">
                       <motion.div
@@ -1338,20 +1428,26 @@ export function EnhancedPhotoEditor({
                     animate={{ y: [0, -10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <div className={`w-32 h-32 mx-auto mb-6 rounded-3xl flex items-center justify-center backdrop-blur-sm transition-all duration-300 ${
-                      isDragOver
-                        ? 'bg-gradient-to-br from-indigo-400/40 to-purple-500/40 border-2 border-indigo-400'
-                        : 'bg-gradient-to-br from-indigo-400/20 to-purple-500/20 border border-white/20'
-                    }`}>
-                      <Upload className={`w-16 h-16 transition-colors duration-300 ${
-                        isDragOver ? 'text-indigo-300' : 'text-white/40'
-                      }`} />
+                    <div
+                      className={`w-32 h-32 mx-auto mb-6 rounded-3xl flex items-center justify-center backdrop-blur-sm transition-all duration-300 ${
+                        isDragOver
+                          ? 'bg-gradient-to-br from-indigo-400/40 to-purple-500/40 border-2 border-indigo-400'
+                          : 'bg-gradient-to-br from-indigo-400/20 to-purple-500/20 border border-white/20'
+                      }`}
+                    >
+                      <Upload
+                        className={`w-16 h-16 transition-colors duration-300 ${
+                          isDragOver ? 'text-indigo-300' : 'text-white/40'
+                        }`}
+                      />
                     </div>
                   </motion.div>
                   <p className="text-xl mb-2 text-white">{t.uploadToStart}</p>
                   <p className="text-sm text-white/50">{t.supportedFormats}</p>
                   {isDragOver && (
-                    <p className="text-sm text-indigo-300 mt-4 font-semibold animate-pulse">Drop your photo here</p>
+                    <p className="text-sm text-indigo-300 mt-4 font-semibold animate-pulse">
+                      Drop your photo here
+                    </p>
                   )}
                 </motion.div>
               )}
@@ -1366,10 +1462,7 @@ export function EnhancedPhotoEditor({
             >
               {/* Download Edited Photo Button */}
               {uploadedImage && (
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button
                     onClick={handleDownloadSingle}
                     size="lg"
